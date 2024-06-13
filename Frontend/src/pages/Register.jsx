@@ -92,7 +92,7 @@ function Register() {
        
         <button type="submit">Register</button>
         <div className="login">
-          <p>Already Registered?<Link to="/login">Login</Link></p>
+          <p>Already Registered?<Link to="login">Login</Link></p>
        
           
           </div>

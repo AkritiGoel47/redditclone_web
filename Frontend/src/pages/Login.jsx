@@ -77,7 +77,7 @@ function Login() {
           </div>
         <button type="submit"> Login</button>
         <div className="register">
-          <p>Don't have an account?navigate("/")Register</p>
+          <p>Don't have an account?<Link to="/register"> Register</Link></p>
        
           
           </div>
