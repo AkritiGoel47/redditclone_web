@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate,Link } from "react-router-dom";
-import  styles from "../assets/styles/Register.module.css";
+import  RegisterCSS from "../assets/styles/Register.module.css";
 import { FaUser,FaLock  } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
@@ -52,50 +52,50 @@ function Register() {
 
   return (
     
-    <div className={styles.info}>   
+    <div className={RegisterCSS.info}>   
     
-      <div className={styles.form_box }>
+      <div className={RegisterCSS.form_box }>
       
       <form onSubmit={registerUser}>
         <h1>Register</h1>
-      <div className={styles.input_box}>
+      <div className={RegisterCSS.input_box}>
         <input
-          className={styles.input}
+          className={RegisterCSS.input}
           type="text"
           placeholder="Username"
           value={data.name}
           onChange={(e) => setData({ ...data, name: e.target.value })}
 
         />
-        <FaUser className={styles.icon}/>
+        <FaUser className={RegisterCSS.icon}/>
         </div>
-       <div className={styles.input_box}>
+       <div className={RegisterCSS.input_box}>
         <input
-          className={styles.input}
+          className={RegisterCSS.input}
           type="email"
           placeholder="Email"
           value={data.email}
           onChange={(e) => setData({ ...data, email: e.target.value })}
         />
-        <MdEmail className={styles.icon}/>
+        <MdEmail className={RegisterCSS.icon}/>
         </div>
-        <div className={styles.input_box}>
+        <div className={RegisterCSS.input_box}>
         <input
-        className={styles.input}
+        className={RegisterCSS.input}
           type="password"
           placeholder="Password"
           value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}
         />
-        <FaLock className={styles.icon} />
+        <FaLock className={RegisterCSS.icon} />
         </div>
-        <div className={styles.remember_forgot}>
-         <label> <input className={styles.input} type="checkbox" />I agree to the terms and conditions</label>
+        <div className={RegisterCSS.remember_forgot}>
+         <label> <input className={RegisterCSS.input} type="checkbox" />I agree to the terms and conditions</label>
          
           </div>
        
-        <button type="submit"className={styles.button}>Register</button>
-        <div className={styles.login}>
+        <button type="submit"className={RegisterCSS.button}>Register</button>
+        <div className={RegisterCSS.login}>
           <p>Already Registered?<Link to="/login">Login</Link> </p>
        
           

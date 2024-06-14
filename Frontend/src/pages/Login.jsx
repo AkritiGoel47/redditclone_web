@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import styles from  "../assets/styles/Login.module.css";
+import LoginCSS from  "../assets/styles/Login.module.css";
 import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 
@@ -42,41 +42,41 @@ function Login() {
   };
 
   return (
-    <div className={styles.info}>
-      <div className={styles.form_box}>
+    <div className={LoginCSS.info}>
+      <div className={LoginCSS.form_box}>
         <form onSubmit={loginUser}>
           <h1>Login</h1>
-          <div className={styles.input_box}>
+          <div className={LoginCSS.input_box}>
             <input
-              className={styles.input}
+              className={LoginCSS.input}
               type="email"
               placeholder="Email"
               value={data.email}
               onChange={(e) => setData({ ...data, email: e.target.value })}
             />
-            <MdEmail className={styles.icon} />
+            <MdEmail className={LoginCSS.icon} />
           </div>
 
-          <div className={styles.input_box}>
+          <div className={LoginCSS.input_box}>
             <input
-            className={styles.input}
+            className={LoginCSS.input}
               type="password"
               placeholder="Password"
               value={data.password}
               onChange={(e) => setData({ ...data, password: e.target.value })}
             />
-            <FaLock className={styles.icon} />
+            <FaLock className={LoginCSS.icon} />
           </div>
-          <div className={styles.remember_forgot}>
+          <div className={LoginCSS.remember_forgot}>
             <label>
             
-              <input type="checkbox" className={styles.input} />
+              <input type="checkbox" className={LoginCSS.input} />
               Remember password
             </label>
             <a href="#">Forgot password?</a>
           </div>
-          <button type="submit"className={styles.button}> Login</button>
-          <div className={styles.register}>
+          <button type="submit"className={LoginCSS.button}> Login</button>
+          <div className={LoginCSS.register}>
             <p>
               Don't have an account?<Link to="/"> Register</Link>
             </p>
