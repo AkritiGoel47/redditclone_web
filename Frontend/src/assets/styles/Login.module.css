@@ -11,13 +11,15 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: slateblue;
+    background:   rgb(255, 89, 0);
 }
 .info{
   position:relative;
   width:420px;
   height: 450px;
-  background: seagreen;
+  background: transparent;
+  border : 2px solid rgba(255,255,255,.1);
+  backdrop-filter: blur(3000px);
   border-radius:10px;
   color:#fff;
 }
@@ -99,6 +101,23 @@ color: #333;
 font-weight: 700;
 
 }
+form .login{
+  font-size:14.5px;
+  text-align: center;
+  margin: 20px 0 15px;
+}
+
+.login p a{
+  color: #fff;
+  text-decoration:none ;
+  font-weight: 600;
+}
+.login p a:hover{
+  text-decoration: underline;
+
+}
+
+
 
 form .register{
   font-size:14.5px;
@@ -115,6 +134,7 @@ form .register{
   text-decoration: underline;
 
 }
+
 
 
 

@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import "../assets/styles/Login.css";
+import styles from  "../assets/styles/Login.module.css";
 import { MdEmail } from "react-icons/md";
-import { FaLock  } from "react-icons/fa";
-
+import { FaLock } from "react-icons/fa";
 
 function Login() {
-
   const url = "http://localhost:8000";
   const navigate = useNavigate();
   const [data, setData] = useState({
@@ -16,23 +14,22 @@ function Login() {
     password: "",
   });
 
-  const loginUser = async(e) => {
+  const loginUser = async (e) => {
     e.preventDefault();
-    const {  email, password } = data;
+    const { email, password } = data;
     try {
       const response = await axios.post(
-        `${url}/api/login`, 
+        `${url}/api/login`,
         {
-          
           email,
           password,
         },
-        { withCredentials: true } 
+        { withCredentials: true }
       );
       if (response.status === 200) {
-        setData({  email: "", password: "" });
+        setData({ email: "", password: "" });
         toast.success("Login Successful. Welcome!");
-        
+        navigate("/home")
       } else if (response.data.error) {
         toast.error(response.data.error);
       } else {
@@ -45,44 +42,47 @@ function Login() {
   };
 
   return (
-    <div className="info"> 
-    <div className="form-box login">
-      <form onSubmit={loginUser}>
-
-        <h1>Login</h1>
-      <div className="input-box">
-       
-        <input
-          type="email"
-          placeholder="Email"
-          value={data.email}
-          onChange={(e) => setData({ ...data, email: e.target.value })}
-        />
-        <MdEmail className="icon"/>
-        </div>
-
-      <div className="input-box">
-        
-        <input
-          type="password"
-          placeholder="Password"
-          value={data.password}
-          onChange={(e) => setData({ ...data, password: e.target.value })}
-        />
-         <FaLock className="icon" />
-        </div>
-        <div className="remember-forgot">
-         <label> <input type="checkbox" />Remember password</label>
-          <a href="#">Forgot password?</a>
+    <div className={styles.info}>
+      <div className={styles.form-box}>
+        <form onSubmit={loginUser}>
+          <h1>Login</h1>
+          <div className={styles.input-box}>
+            <input
+              type="email"
+              placeholder="Email"
+              value={data.email}
+              className={styles.input}
+              onChange={(e) => setData({ ...data, email: e.target.value })}
+            />
+            <MdEmail className={styles.icon} />
           </div>
-        <button type="submit"> Login</button>
-        <div className="register">
-          <p>Don't have an account?<Link to="/register"> Register</Link></p>
-       
-          
+
+          <div className={styles.input-box}>
+            <input
+            className={styles.input}
+              type="password"
+              placeholder="Password"
+              value={data.password}
+              onChange={(e) => setData({ ...data, password: e.target.value })}
+            />
+            <FaLock className={styles.icon} />
           </div>
-      </form>
-    </div>
+          <div className={styles.remember-forgot}>
+            <label>
+            
+              <input type="checkbox" className={styles.input} />
+              Remember password
+            </label>
+            <a href="#">Forgot password?</a>
+          </div>
+          <button type="submit"className={styles.button}> Login</button>
+          <div className={styles.register}>
+            <p>
+              Don't have an account?<Link to="/"> Register</Link>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

@@ -2,10 +2,10 @@ import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate,Link } from "react-router-dom";
-import "../assets/styles/Register.css";
+import  styles from "../assets/styles/Register.module.css";
 import { FaUser,FaLock  } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import Login from "./Login.jsx";
+
 
 
 
@@ -33,6 +33,7 @@ function Register() {
       if (response.status === 200) {
         setData({ name: "", email: "", password: "" });
         toast.success("Registration Successful. Welcome!");
+        navigate("/home")
         
       } else if (response.data.error) {
         toast.error(response.data.error);
@@ -51,48 +52,51 @@ function Register() {
 
   return (
     
-    <div className="info">   
+    <div className={styles.info}>   
     
-      <div className="form-box register">
+      <div className={styles.form-box }>
       
       <form onSubmit={registerUser}>
         <h1>Register</h1>
-      <div className="input-box">
+      <div className={styles.input-box}>
         <input
+          className={styles.input}
           type="text"
           placeholder="Username"
           value={data.name}
           onChange={(e) => setData({ ...data, name: e.target.value })}
 
         />
-        <FaUser className="icon" />
+        <FaUser className={styles.icon}/>
         </div>
-       <div className="input-box">
+       <div className={styles.input-box}>
         <input
+          className={styles.input}
           type="email"
           placeholder="Email"
           value={data.email}
           onChange={(e) => setData({ ...data, email: e.target.value })}
         />
-        <MdEmail className="icon"/>
+        <MdEmail className={styles.icon}/>
         </div>
-        <div className="input-box">
+        <div className={styles.input-box}>
         <input
+        className={styles.input}
           type="password"
           placeholder="Password"
           value={data.password}
           onChange={(e) => setData({ ...data, password: e.target.value })}
         />
-        <FaLock className="icon" />
+        <FaLock className={styles.icon} />
         </div>
-        <div className="remember-forgot">
-         <label> <input type="checkbox" />I agree to the terms and conditions</label>
-          {/* <a href="#">Forgot password?</a> */}
+        <div className={styles.remember-forgot}>
+         <label> <input className={styles.input} type="checkbox" />I agree to the terms and conditions</label>
+         
           </div>
        
-        <button type="submit">Register</button>
-        <div className="login">
-          <p>Already Registered?<Link to="login">Login</Link></p>
+        <button type="submit"className={styles.button}>Register</button>
+        <div className={styles.login}>
+          <p>Already Registered?<Link to="/login">Login</Link> </p>
        
           
           </div>
