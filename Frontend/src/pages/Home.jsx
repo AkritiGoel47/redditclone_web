@@ -1,23 +1,23 @@
 import React from 'react'
-import '../assets/styles/Navbar.css';
+import styles from '../assets/styles/Navbar.module.css';
 
 function Home() {
   return (
     <>
-    <div className="box">
+    <div className={styles.box}>
 
-        <div className="line">
+        <div className={styles.line}>
             
             <h1>Dive Into Anything
                 </h1> </div>
-                <div className="paragh">Reddit is home to thousands of communities, endless <br/>
+                <div className={styles.paragh}>Reddit is home to thousands of communities, endless <br/>
                 conversation, and authentic human connection. Whether you're <br/>
                 into breaking news, sports, TV fan theories, or a never-ending<br/>
                  stream of the internet's cutest animals, there's a community on <br/>
                  Reddit for you.<br/>
                  </div>
-                 <div className="next"><h1>How Does Reddit Work?</h1><br/></div>
-                <div className="next2"> Every day, millions of people around the world post, vote, and comment in <br/>
+                 <div className={styles.next}><h1>How Does Reddit Work?</h1><br/></div>
+                <div className={styles.next2}> Every day, millions of people around the world post, vote, and comment in <br/>
                  communities organized around their interests. </div>
                   {/* <div className="boxes" >
                     <div div className="boxes1">

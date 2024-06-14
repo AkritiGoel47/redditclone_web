@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Link} from "react-router-dom"
-import '../assets/styles/Navbar.css';
+import styles from'../assets/styles/Navbar.module.css';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,9 +12,9 @@ function Navbar() {
   return (
     
    
-     <nav className="navbar">
-      <div className="navbar-logo">
-         {/* <img src='https://images.app.goo.gl/pub7KSz8tavdAFMg6.jpg' width={20} height={20} />Reddit */}
+     <nav className={styles.navbar}>
+      <div className={styles.navbar_logo}>
+         {/* <img src='https://images.app.goo.gl/pub7KSz8tavdAFMg6.jpg' width={20} height={20} />Reddit
       </div>
       <div className={`navbar-links ${isOpen ? 'open' : ''}`}>
     <Link to='/'>Register</Link>
@@ -27,10 +27,10 @@ function Navbar() {
     <Link to='/transparency'>Transparency</Link>
     <Link to='/press'>Press</Link>
 </div>
-<div className="navbar-search">
-        <input type="text" placeholder="Search Reddit" />
+<div className={styles.navbar_search}>
+        <input className={styles.input} type="text" placeholder="Search Reddit" />
       </div> 
-      <div className="navbar-toggle" onClick={toggleNavbar}>
+      <div className={styles.navbar_toggle} onClick={toggleNavbar}>
         <span></span>
         <span></span>
         <span></span>

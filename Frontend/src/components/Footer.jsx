@@ -1,16 +1,16 @@
 
 import React from "react";
-import '../assets/styles/Navbar.css';
+import styles from'../assets/styles/Navbar.module.css';
 
 function Footer(){
 return(
 
-<div className="container">
-<div className="header1" ><h2>
+<div className={styles.container}>
+<div className={styles.header1} ><h2>
         reddit
     </h2></div>
-    <div className="content">
-    <div className="header" >    <h3>Company<br/></h3></div>
+    <div className={styles.content}>
+    <div className={styles.header} >    <h3>Company<br/></h3></div>
         Reddit,Inc.<br/>
         
         Careers<br/>
@@ -21,8 +21,8 @@ return(
 
 
     </div>
-    <div className="content">
-    <div className="header" > <h3>Community<br/></h3> </div>
+    <div className={styles.content}>
+    <div className={styles.header} > <h3>Community<br/></h3> </div>
         Reddit.com<br/>
         Reddit for Community<br/>
         Content Policy<br/>
@@ -32,8 +32,8 @@ return(
 
 
     </div>
-    <div className="content">
-      <div className="header" > <h3>Privacy & Safety<br/></h3></div>
+    <div className={styles.content}>
+      <div className={styles.header} > <h3>Privacy & Safety<br/></h3></div>
         Privacy Policy<br/>
         User Agreement<br/>
         Transparency Report<br/>

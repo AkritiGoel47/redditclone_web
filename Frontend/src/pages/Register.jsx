@@ -54,11 +54,11 @@ function Register() {
     
     <div className={styles.info}>   
     
-      <div className={styles.form-box }>
+      <div className={styles.form_box }>
       
       <form onSubmit={registerUser}>
         <h1>Register</h1>
-      <div className={styles.input-box}>
+      <div className={styles.input_box}>
         <input
           className={styles.input}
           type="text"
@@ -69,7 +69,7 @@ function Register() {
         />
         <FaUser className={styles.icon}/>
         </div>
-       <div className={styles.input-box}>
+       <div className={styles.input_box}>
         <input
           className={styles.input}
           type="email"
@@ -79,7 +79,7 @@ function Register() {
         />
         <MdEmail className={styles.icon}/>
         </div>
-        <div className={styles.input-box}>
+        <div className={styles.input_box}>
         <input
         className={styles.input}
           type="password"
@@ -89,7 +89,7 @@ function Register() {
         />
         <FaLock className={styles.icon} />
         </div>
-        <div className={styles.remember-forgot}>
+        <div className={styles.remember_forgot}>
          <label> <input className={styles.input} type="checkbox" />I agree to the terms and conditions</label>
          
           </div>

@@ -43,21 +43,21 @@ function Login() {
 
   return (
     <div className={styles.info}>
-      <div className={styles.form-box}>
+      <div className={styles.form_box}>
         <form onSubmit={loginUser}>
           <h1>Login</h1>
-          <div className={styles.input-box}>
+          <div className={styles.input_box}>
             <input
+              className={styles.input}
               type="email"
               placeholder="Email"
               value={data.email}
-              className={styles.input}
               onChange={(e) => setData({ ...data, email: e.target.value })}
             />
             <MdEmail className={styles.icon} />
           </div>
 
-          <div className={styles.input-box}>
+          <div className={styles.input_box}>
             <input
             className={styles.input}
               type="password"
@@ -67,7 +67,7 @@ function Login() {
             />
             <FaLock className={styles.icon} />
           </div>
-          <div className={styles.remember-forgot}>
+          <div className={styles.remember_forgot}>
             <label>
             
               <input type="checkbox" className={styles.input} />
