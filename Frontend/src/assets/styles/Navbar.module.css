@@ -1,0 +1,168 @@
+ * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+.navbar {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+   
+      padding :30px 20px;
+      
+     
+  }
+  
+ .navbar_logo  {
+     color: orangered; 
+    text-decoration: none;
+    font-size: 30px;
+    font-weight: bold;
+   margin-left: 400px;
+  }
+  
+  .navbar_links {
+    display: flex;
+    align-items: center;
+      font-family: Arial, sans-serif; 
+  }
+  
+  
+  
+   .navbar_search input {
+    padding: 8px;
+    
+   
+    color: black;
+    
+  }
+  .navbar_search{
+    color: black;
+    margin-left: 90 px;
+
+  }
+   
+  .navbar_toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+  }
+  
+  .navbar_toggle span {
+    height: 3px;
+    width: 25px;
+    background: white;
+    margin: 4px 0;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar_links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .navbar_links.open {
+      display: flex;
+    }
+  
+    .navbar_links a {
+      text-align: center;
+      padding: 10px 0;
+      border-top: 1px solid white;
+    }
+  
+    .navbar_toggle {
+      display: flex;
+    }
+  }
+
+  .box{
+   
+    background-color: orangered;
+
+    height: 1500px;
+  }
+
+  .line{
+    font-style: bold;
+    color: black;
+    text-align: center;
+ padding-top: 240px;
+ font-size: xx-large;
+   
+
+  }
+
+  .paragh{
+  
+   text-align: center;
+   font-style: bold;
+  font-size:x-large;
+   color:black;
+   }
+
+   .next{
+    font-style: bold;
+    color: black;
+    text-align: center;
+ padding-top: 340px;
+ font-size: xx-large;
+
+   }
+
+
+   .next2{
+    text-align: center;
+   font-style: bold;
+  font-size:x-large;
+   color:black;
+
+   }
+   
+   .container{
+    background-color: black;
+    
+    
+   padding:30px;
+   display: flex;
+   
+justify-content: center;
+  
+   
+
+   }
+
+   .content{
+   color: white;
+   margin-left: 150px;
+   font-size: medium;
+   margin-top: 50px;
+   justify-content: space-around;
+ 
+
+ 
+   
+
+  
+
+   }
+.header1{
+  color: orangered;
+    font-size:large;
+    margin-top: 45px;
+margin-left: 30px;
+}
+   .header{
+    color: orangered;
+    font-size:large;
+    
+
+   } 
