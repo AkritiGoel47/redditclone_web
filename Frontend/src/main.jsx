@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from "./App.jsx";
-import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Register from "./pages/Register.jsx";
 import Login from "./pages/Login.jsx";
@@ -13,6 +12,7 @@ import Brand from "./pages/Brand.jsx";
 import Transparency from "./pages/Transparency.jsx";
 import Press from "./pages/Press.jsx";
 import Post from "./pages/Post.jsx";
+import CreatingPost from './pages/CreatingPost.jsx';
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
@@ -56,6 +56,10 @@ const router = createBrowserRouter([
       {
         path:'post',
         element:<Post />
+      },
+      {
+        path:'create',
+        element:<CreatingPost />
       }
      
     ]

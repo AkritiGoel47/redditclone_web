@@ -1,3 +1,4 @@
+
  * {
   margin: 0;
   padding: 0;
@@ -23,16 +24,24 @@
  .navbar_logo  {
      color: orangered; 
     text-decoration: none;
-    font-size: 30px;
     font-weight: bold;
-   margin-left: 400px;
+    font-size: xx-large ;
+   margin-left: 300px;
+   justify-content: space-between ;
   }
   
-  .navbar_links {
-    display: flex;
-    align-items: center;
-      font-family: Arial, sans-serif; 
+  .navbar_links{
+    text-decoration: none;
+   display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: x-large;
+  color: black;
+ 
+ 
+    
   }
+  
   
   
   

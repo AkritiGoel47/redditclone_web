@@ -3,7 +3,90 @@
     padding: 0;
     box-sizing: border-box;
   }
+  .navbar {
+    position: fixed;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+   height: 70px;
+    border-bottom: 1px solid rgb(128, 125, 125);
+    
+   
+      
+     
+  }
 
   .navbar_logo{
+   display: flex;
+   
+    
+    min-height: 20vh;
+
+  }
+  .first{
+    padding-left :10px;
+    padding-top :5px;
     color: white;
+     
+   font-size: xx-large ;
+  }
+
+  .icon{
+    color:  rgb(255, 89, 0);
+    width: 20px;
+    height:50px;
+
+  }
+  
+  .navbar_search .input {
+    padding: 8px;
+    margin-top: 10px;
+    background:  rgb(34, 32, 32);
+    border-radius: 500px;
+   width:500px;
+   
+    text-decoration-color:darkgray;
+    font-size:medium;
+    padding-left: 50px;
+    border:none;
+    outline:none;
+    color: darkgray;
+  }
+  .navbar_search{
+  /* color: black;  */
+    /* padding-right: 10px; */
+   margin-left:600px;
+    
+
+  }
+  .navbar_search .icon2{
+    position: absolute;
+    color:darkgray;
+    
+    margin-top: 13px;
+    width:30px;
+    height:30px;
+padding-left: 5px;
+   
+    
+  
+  }
+
+  .create{
+    color: white;
+    margin-right: 50px;
+    font-size:large ;
+padding-top: 13px;
+text-decoration: none;
+  }
+ .plus{
+    width:30px;
+    height:40px;
+    color:white;
+    font-size: x-large;
+    /* padding-right:100px; */
+ margin-left:550px;
+ padding-top: 7px;
+
+    
   }

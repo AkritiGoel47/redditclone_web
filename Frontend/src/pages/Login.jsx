@@ -29,7 +29,7 @@ function Login() {
       if (response.status === 200) {
         setData({ email: "", password: "" });
         toast.success("Login Successful. Welcome!");
-        navigate("/home")
+        navigate("/post")
       } else if (response.data.error) {
         toast.error(response.data.error);
       } else {

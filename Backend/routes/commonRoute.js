@@ -15,9 +15,9 @@ router.post('/update-category',auth,categoryUpdateValidator, categoryController.
 
 
 //post routes
-router.post('/create-post',auth,createPostValidator, postController.createPost)
-router.get('/get-post',auth, postController.getPost)
-router.post('/delete-post',auth,deletePostValidator, postController.deletePost)
-router.post('/update-post',auth,updatePostValidator, postController.updatePost)
+router.post('/create-post',createPostValidator, postController.createPost)
+router.get('/get-post', postController.getPost)
+router.post('/delete-post',deletePostValidator, postController.deletePost)
+router.post('/update-post',updatePostValidator, postController.updatePost)
 
 module.exports = router;
