@@ -2,9 +2,10 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const { mongoose } = require("mongoose");
-const authRoute = require ('./routes/authRoutes');
-const adminRoute = require('./routes/adminroutes')
-const commonRoute = require('./routes/commonRoute')
+const usermodel = require("./models/postModel"); //for
+const authRoute = require("./routes/authRoutes");
+const adminRoute = require("./routes/adminroutes");
+const commonRoute = require("./routes/commonRoute");
 const app = express();
 const PORT = 8000 || process.env.PORT;
 app.use(express.json());
@@ -12,6 +13,7 @@ dotenv.config();
 
 mongoose
   .connect(process.env.MONGO_URL)
+  
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log("Database not Connected", err));
 
@@ -22,16 +24,29 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions));
 
-app.use('/api',authRoute);
-app.use('/api/admin',adminRoute);
-app.use('/api',commonRoute);
+app.use("/api", authRoute);
+app.use("/api/admin", adminRoute);
+app.use("/api", commonRoute);
 
+app.get("/getposts", async (req, res) => {
+ 
+  try{
+    
+    const posts = await usermodel.find();
 
+    return res.status(200).json({
+      success: true,
+      
+      data: posts,
+    });
+  } catch(err) {
+    console.log(err);
+    res.status(500).json({ error: 'server error' });
+  }
+});
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 
-
-
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
   console.log(`Server is running on port ${PORT}`);
 });

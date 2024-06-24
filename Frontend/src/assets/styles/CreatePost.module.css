@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 * {
     margin: 0;
@@ -24,10 +25,20 @@
     height: 100vh; 
   }
   
-  .heading, .heading2 {
-    font-size: 18px;
-    color: white; 
-    margin-bottom: 10px;
+  .heading{
+    color: darkgray;
+  font-size: medium;
+  padding-left: 30px;
+  font-family: "Roboto Mono", monospace;
+  margin-top: 100px;
+  padding-bottom: 10px;
+  }
+  .heading2 {
+    color: darkgray;
+    font-size: medium;
+    padding-left: 30px;
+    font-family: "Roboto Mono", monospace;
+    margin-top: 80px;
   }
   
   .both {
@@ -42,9 +53,17 @@
     color: white; 
   }
   
-  .content, .content2 {
+  .content {
     font-size: 16px;
     color: white; 
+    text-decoration: none;
+   
+  }
+  .content2 {
+    font-size: large;
+    color: white;
+    margin-top: 15px;
+    margin-left: 8px;
     text-decoration: none;
   }
   
@@ -53,12 +72,16 @@
   }
   
   .form_box {
-    margin-left: 50px; 
-    width: 70%; 
+    
+    width: 50%;
+    margin-right: 300px; 
     background: black; 
-    padding: 20px;
+   
+    padding-top: 200px;
     border-radius: 8px;
     color: white; 
+    
+    
   }
   
   .input_box, .input_box2 {
