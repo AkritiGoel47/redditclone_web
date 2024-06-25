@@ -83,6 +83,12 @@ if(!isPasswordMatch){
 
 }
 const accessToken =await  generateAccessToken({user :userData})
+res.cookie('accessToken', accessToken, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV, // Set to true in production
+  maxAge: 2 * 60 * 60 * 1000, // 2 hours
+});
+
 
 return res.status(200).json({
     success: true,

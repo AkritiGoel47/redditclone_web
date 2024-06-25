@@ -23,7 +23,7 @@
     width: 300px;
     color: white; 
     border-right: 2px solid gray; 
-    height: 100vh; 
+    height: 1000vh; 
   }
   
   .heading{
@@ -73,25 +73,31 @@
   }
 
 
-  /* /* .form_box {
-    /* margin-top: 20px; */
+   .form_box {
+    margin-top: 20px;
+   }
    
   
-  /* .post { */
-    /* background-color: #fff; */
-    /* padding: 10px;
-    margin: 10px 0; */
-    /* border-radius: 5px;
+  .post {
+    background-color: #fff;
+   
+    
+    padding: 40px;
+    margin-top: 50px;
+    /* margin: 10px 0; */
+    border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  } */
-  /* .rightSide {
+    width:100%;
+  }
+   .rightSide {
     width: 30%;
     /* background-color: #f4f4f4; */
-    /* padding: 20px; */
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   margin-right: 700px;
     right: 0;
     top: 0;
-    height: 100%; */ 
-    /* overflow-y: auto; */
+    height: 100%; 
+    
+   }
   

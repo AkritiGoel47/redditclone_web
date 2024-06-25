@@ -9,22 +9,33 @@ import { VscEdit } from "react-icons/vsc";
 import { BsTransparency } from "react-icons/bs";
 import { TbBrandAppgallery } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import PostContextProvider from '../context/PostContextProvider';
 
+  
 function Post() {
   const url = "http://localhost:8000";
-  const [posts, setPosts] = useState([])
-    
- const fetchposts = async()=>{
-  const response = await fetch(
-        `${url}/getposts`)
-      const data = await response.json();
-setPosts(data);
-  }
-useEffect(() => {
-  fetchposts();
-},[]);
+  const [posts, setPosts] = useState([]);
   
+  
+  const fetchposts = async () => {
+    try {
+      const response = await fetch(`${url}/getposts`);
+      
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+console.log("Posts Data: ", data)
+      setPosts(data.data);
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchposts();
+  }, []);
   return (
     <>
       <PostNavbar />

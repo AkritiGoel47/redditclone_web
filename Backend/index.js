@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const cookieparser = require('cookie-parser');
 const { mongoose } = require("mongoose");
 const usermodel = require("./models/postModel"); //for
 const authRoute = require("./routes/authRoutes");
@@ -16,6 +17,9 @@ mongoose
   
   .then(() => console.log("Database Connected"))
   .catch((err) => console.log("Database not Connected", err));
+  
+
+  app.use(cookieparser());
 
 const corsOptions = {
   origin: "http://localhost:5173",
@@ -39,9 +43,16 @@ app.get("/getposts", async (req, res) => {
       
       data: posts,
     });
-  } catch(err) {
-    console.log(err);
-    res.status(500).json({ error: 'server error' });
+  }
+    
+    catch (error) {
+      
+      return res.status(400).json({
+        
+        success: false,
+        msg: error.message,
+      });
+   
   }
 });
 
