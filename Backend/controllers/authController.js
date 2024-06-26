@@ -31,6 +31,7 @@ const registerUser = async (req, res) => {
     });
 
     const userData = await user.save();
+    
 
     return res.status(200).json({
       success: true,

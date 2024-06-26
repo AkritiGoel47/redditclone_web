@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import { useNavigate,Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import PostCSS from "../assets/styles/CreatePost.module.css"
 import PostNavbar from "../components/PostNavbar";
 import { IoIosAdd, IoLogoReddit } from "react-icons/io";
@@ -13,7 +13,7 @@ import { TbBrandAppgallery } from "react-icons/tb";
 function CreatingPost() {
 
     const url = "http://localhost:8000";
-    // const navigate = useNavigate();
+   
     const [data, setData] = useState({ title: "", description: ""});
   
     
@@ -39,8 +39,9 @@ function CreatingPost() {
         console.log(response);
         if (response.status === 200) {
           setData({ title: "", description: "" });
-          toast.success("Post created successfully");
-        //   navigate("/post")
+         
+          toast.success("Post created successfully and status is pending!");
+          
           
         } else if (response.data.error) {
           toast.error(response.data.error);

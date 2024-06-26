@@ -10,6 +10,8 @@ import { BsTransparency } from "react-icons/bs";
 import { TbBrandAppgallery } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
+
+
   
 function Post() {
   const url = "http://localhost:8000";
@@ -78,7 +80,8 @@ console.log("Posts Data: ", data)
         <div className={PostCSS.rightSide}>
           <div className={PostCSS.form_box}>
             {posts.length > 0 ? (
-              posts.map(post => (
+              posts.filter(post => post.validated)
+              .map(post => (
                 <div key={post.id} className={PostCSS.post}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>

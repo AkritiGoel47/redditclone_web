@@ -1,26 +1,21 @@
-const mongoose =require ('mongoose')
-
-
-
+const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-    title:{
-        type:String,
-        required:true
-    },
-   
-    description: {
-        type:String,
-        required:true
-    },
-    categories:[{
-        type:mongoose.Schema.Types.ObjectId,     //when post will be given any category then it will be assigned under this
-        ref:'Category',
-        required:false
-    }]
+  title: {
+    type: String,
+    required: true,
+  },
+
+  description: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: ["pending", "approved", "rejected"],
+
+    default: "pending",
+  },
 });
 
-
-
-
-module.exports = mongoose.model('posts',postSchema)
+module.exports = mongoose.model("posts", postSchema);

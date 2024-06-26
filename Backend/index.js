@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieparser = require('cookie-parser');
 const { mongoose } = require("mongoose");
-const usermodel = require("./models/postModel"); //for
+const usermodel = require("./models/postModel"); 
 const authRoute = require("./routes/authRoutes");
 const adminRoute = require("./routes/adminroutes");
 const commonRoute = require("./routes/commonRoute");
@@ -32,11 +32,12 @@ app.use("/api", authRoute);
 app.use("/api/admin", adminRoute);
 app.use("/api", commonRoute);
 
+
 app.get("/getposts", async (req, res) => {
  
   try{
     
-    const posts = await usermodel.find();
+    const posts = await usermodel.find({ status: 'approved' });
 
     return res.status(200).json({
       success: true,
