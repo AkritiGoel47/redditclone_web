@@ -27,7 +27,7 @@ req.user = decodedData.user;
       success: false,
       msg: error.message,
     });
-   }
+   };
 
    return next();
     }

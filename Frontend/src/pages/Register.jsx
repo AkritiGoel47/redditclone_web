@@ -12,13 +12,13 @@ import { MdEmail } from "react-icons/md";
 function Register() {
   const url = "http://localhost:8000";
   const navigate = useNavigate();
-  const [data, setData] = useState({ name: "", email: "", password: "" });
+  const [data, setData] = useState({ name: "", email: "", password: "" ,role : ""});
 
   
   const registerUser = async (e) => {
     e.preventDefault();
 
-    const { name, email, password } = data;
+    const { name, email, password,role} = data;
     try {
       const response = await axios.post(
         `${url}/api/register`, 
