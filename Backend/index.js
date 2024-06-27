@@ -33,29 +33,7 @@ app.use("/api/admin", adminRoute);
 app.use("/api", commonRoute);
 
 
-app.get("/getposts", async (req, res) => {
- 
-  try{
-    
-    const posts = await usermodel.find({ status: 'approved' });
 
-    return res.status(200).json({
-      success: true,
-      
-      data: posts,
-    });
-  }
-    
-    catch (error) {
-      
-      return res.status(400).json({
-        
-        success: false,
-        msg: error.message,
-      });
-   
-  }
-});
 
 app.use(express.static("public"));
 

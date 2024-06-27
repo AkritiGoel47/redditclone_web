@@ -13,7 +13,7 @@ const registerUser = async (req, res) => {
         errors: errors.array(),
       });
     }
-    const { name, email,role, password } = req.body;
+    const { name, email, password } = req.body;
     const isExistUser = await User.findOne({ email });
     if (isExistUser) {
       return res.status(400).json({
@@ -27,7 +27,7 @@ const registerUser = async (req, res) => {
     const user = new User({
       name,
       email,
-      role,
+      
     password:hashedPassword,
     });
 
@@ -97,7 +97,9 @@ return res.status(200).json({
    accessToken:accessToken,
    tokenType:'Bearer',
     msg: 'Login successful',
-    data : userData,
+    data : {_id: userData._id,
+    email: userData.email,
+    role: userData.role,}
 
   });
 

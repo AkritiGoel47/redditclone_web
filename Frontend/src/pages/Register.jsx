@@ -5,6 +5,7 @@ import { useNavigate,Link } from "react-router-dom";
 import  RegisterCSS from "../assets/styles/Register.module.css";
 import { FaUser,FaLock  } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
+import { FaUserTie } from "react-icons/fa";
 
 
 
@@ -12,13 +13,13 @@ import { MdEmail } from "react-icons/md";
 function Register() {
   const url = "http://localhost:8000";
   const navigate = useNavigate();
-  const [data, setData] = useState({ name: "", email: "", password: "" ,role : ""});
+  const [data, setData] = useState({ name: "", email: "", password: "" });
 
   
   const registerUser = async (e) => {
     e.preventDefault();
 
-    const { name, email, password,role} = data;
+    const { name, email, password} = data;
     try {
       const response = await axios.post(
         `${url}/api/register`, 
@@ -26,12 +27,13 @@ function Register() {
           name,
           email,
           password,
+        
         },
         { withCredentials: true } 
       );
       console.log(response);
       if (response.status === 200) {
-        setData({ name: "", email: "", password: "" });
+        setData({ name: "", email: "", password: "", });
         toast.success("Registration Successful. Welcome!");
         navigate("/post")
         
@@ -79,6 +81,16 @@ function Register() {
         />
         <MdEmail className={RegisterCSS.icon}/>
         </div>
+        {/* <div className={RegisterCSS.input_box}>
+        <input
+          className={RegisterCSS.input}
+          type="text"
+          placeholder="Role"
+          value={data.role}
+          onChange={(e) => setData({ ...data, role: e.target.value })}
+        />
+        <FaUserTie className={RegisterCSS.icon}/>
+        </div> */}
         <div className={RegisterCSS.input_box}>
         <input
         className={RegisterCSS.input}

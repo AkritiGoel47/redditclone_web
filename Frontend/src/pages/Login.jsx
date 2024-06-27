@@ -29,7 +29,12 @@ function Login() {
       if (response.status === 200) {
         setData({ email: "", password: "" });
         toast.success("Login Successful. Welcome!");
-        navigate("/post")
+        if(response.data.role === 'admin'){
+          navigate("/admin/dashboard");
+        }
+        else{
+        navigate("/post");
+        }
       } else if (response.data.error) {
         toast.error(response.data.error);
       } else {

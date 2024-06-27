@@ -100,4 +100,45 @@
     height: 100%; 
     
    }
+   .postList {
+    margin-top: 20px;
+  }
   
+  .post1 {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .post1 h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 5px;
+  }
+  
+  .post1 p {
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .post1 .actions {
+    margin-top: 10px;
+  }
+  
+  .post1 .approve {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .post1 .reject {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    cursor: pointer;
+  }

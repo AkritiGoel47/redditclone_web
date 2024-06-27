@@ -32,7 +32,7 @@ const createPost = async (req, res) => {
 };
 const getPost = async (req, res) => {
   try {
-    const postData = await Post.find({});
+    const postData = await Post.find({status:'approved'});
     return res.status(200).json({
       success: true,
       msg: "Post fetched successfully!",

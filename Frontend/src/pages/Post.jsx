@@ -20,7 +20,7 @@ function Post() {
   
   const fetchposts = async () => {
     try {
-      const response = await fetch(`${url}/getposts`);
+      const response = await fetch(`${url}/api/get-post`);
       
       
       if (!response.ok) {
@@ -80,8 +80,7 @@ console.log("Posts Data: ", data)
         <div className={PostCSS.rightSide}>
           <div className={PostCSS.form_box}>
             {posts.length > 0 ? (
-              posts.filter(post => post.validated)
-              .map(post => (
+              posts.map(post => (
                 <div key={post.id} className={PostCSS.post}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
