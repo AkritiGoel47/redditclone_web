@@ -13,13 +13,13 @@ import { FaUserTie } from "react-icons/fa";
 function Register() {
   const url = "http://localhost:8000";
   const navigate = useNavigate();
-  const [data, setData] = useState({ name: "", email: "", password: "" });
+  const [data, setData] = useState({ name: "", email: "", password: "" ,});
 
   
   const registerUser = async (e) => {
     e.preventDefault();
 
-    const { name, email, password} = data;
+    const { name, email, password,role} = data;
     try {
       const response = await axios.post(
         `${url}/api/register`, 
@@ -27,13 +27,14 @@ function Register() {
           name,
           email,
           password,
+         
         
         },
         { withCredentials: true } 
       );
       console.log(response);
       if (response.status === 200) {
-        setData({ name: "", email: "", password: "", });
+        setData({ name: "", email: "", password: "",});
         toast.success("Registration Successful. Welcome!");
         navigate("/post")
         
@@ -81,16 +82,17 @@ function Register() {
         />
         <MdEmail className={RegisterCSS.icon}/>
         </div>
-        {/* <div className={RegisterCSS.input_box}>
-        <input
-          className={RegisterCSS.input}
-          type="text"
-          placeholder="Role"
-          value={data.role}
-          onChange={(e) => setData({ ...data, role: e.target.value })}
-        />
+         {/* <div className={RegisterCSS.input_box}>
+         <select
+                className={RegisterCSS.input}
+                value={data.role}
+                onChange={(e) => setData({ ...data, role: e.target.value })}
+              >
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
         <FaUserTie className={RegisterCSS.icon}/>
-        </div> */}
+        </div>  */}
         <div className={RegisterCSS.input_box}>
         <input
         className={RegisterCSS.input}
