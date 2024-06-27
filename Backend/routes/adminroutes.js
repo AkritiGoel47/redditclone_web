@@ -9,7 +9,7 @@ const Post = require("../models/postModel");
 router.get("/post", verifyToken, onlyAdminAccess, async (req, res) => {
   try {
     const posts = await Post.find();
-    res.json({ success: true, posts });
+    res.json({ success: true, data:posts });
   } catch (error) {
     res.status(400).json({ success: false, msg: error.message });
   }
@@ -30,7 +30,7 @@ router.post("/approve-post", verifyToken, onlyAdminAccess, async (req, res) => {
     }
     post.status = "approved";
     await post.save();
-    res.json({ success: true, post });
+    res.json({ success: true,data: post });
   } catch (error) {
     res.status(400).json({ success: false, msg: error.message });
   }
@@ -51,7 +51,7 @@ router.post("/reject-post", verifyToken, onlyAdminAccess, async (req, res) => {
     }
     post.status = "rejected";
     await post.save();
-    res.json({ success: true, post });
+    res.json({ success: true, data:post });
   } catch (error) {
     res.status(400).json({ success: false, msg: error.message });
   }
