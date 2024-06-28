@@ -18,7 +18,7 @@ const isExistUser = await User.findOne({ name });
     if (isExistUser) {
       return res.status(400).json({
         success: false,
-        msg: "Name already exists!",
+        msg: "Name already Exists!",
       });
     }
     const community = new Community({ name, description,topics,rules });
@@ -26,7 +26,7 @@ const isExistUser = await User.findOne({ name });
     
     return res.status(200).json({
       success: true,
-      msg: "community created successfully !",
+      msg: "Community created successfully !",
       data: communityData,
     });
 
