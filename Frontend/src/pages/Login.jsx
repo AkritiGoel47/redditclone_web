@@ -118,7 +118,7 @@ function Login() {
     const { email, password } = data;
     try {
       const response = await axios.post(
-        `${url}/api/login`, // Fixed template string
+        `${url}/api/login`,
         {
           email,
           password,
@@ -126,13 +126,13 @@ function Login() {
         { withCredentials: true }
       );
 
-      console.log("Login response:", response); // Debug log
+      console.log("Login response:", response); 
 
       if (response.status === 200) {
         setData({ email: "", password: "" });
         toast.success("Login Successful. Welcome!");
 
-        const userRole = response.data.data.role; // Ensure this matches your backend response
+        const userRole = response.data.data.role; 
 
         if (userRole === "admin") {
           navigate("/admin/dashboard");

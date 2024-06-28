@@ -7,7 +7,7 @@ const {registerValidator,loginValidator}= require('../helpers/validator');
 
 router.post('/register',registerValidator,authController.registerUser);
 router.post('/login',loginValidator,authController.loginUser);
-//authenticated routes
-router.get('/profile',authController.getProfile);
+
+
 
 module.exports = router

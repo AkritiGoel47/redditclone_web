@@ -106,21 +106,9 @@ const loginUser = async (req, res) => {
     });
   }
 };
-const getProfile = async (req, res) => {
-  try {
-    return res.status(200).json({
-      success: true,
-      msg: req.user,
-    });
-  } catch (error) {
-    return res.status(400).json({
-      success: false,
-      msg: error.message,
-    });
-  }
-};
+
 module.exports = {
   registerUser,
   loginUser,
-  getProfile,
+ 
 };
