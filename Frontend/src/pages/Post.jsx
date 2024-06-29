@@ -48,9 +48,9 @@ console.log("Posts Data: ", data)
           </p>
           <div className={PostCSS.both}>
             <IoIosAdd className={PostCSS.icon} />
-            <p className={PostCSS.content}>
-              Create a community
-            </p>
+            
+        <Link to="/community" className={PostCSS.content} >  Create a community</Link>
+            
           </div>
           <p className={PostCSS.heading2}>
             RESOURCES

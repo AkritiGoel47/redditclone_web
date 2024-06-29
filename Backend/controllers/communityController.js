@@ -32,7 +32,7 @@ const isExistUser = await User.findOne({ name });
 
     }catch (error) {
         return res.status(400).json({
-          success: failure,
+          success: false,
     
           msg: error.message,
         });

@@ -14,6 +14,7 @@ import Press from "./pages/Press.jsx";
 import Post from "./pages/Post.jsx";
 import CreatingPost from './pages/CreatingPost.jsx';
 import Admin from './pages/Admin.jsx'
+import Community from './pages/Community.jsx';
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
@@ -65,7 +66,11 @@ const router = createBrowserRouter([
       {
         path:'admin/dashboard',
         element:<Admin />
-      }
+      },
+      {
+        path:'community',
+        element:<Community />
+      },
       
      
     ]
