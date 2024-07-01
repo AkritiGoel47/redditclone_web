@@ -80,7 +80,18 @@ const deletePost = async (req, res) => {
 };
 const addComment = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        msg: "Errors",
+        errors: errors.array(),
+      });
+    }
     const { postId, userId, content } = req.body;
+    if (!postId ||!content ||  !userId) {
+      return res.status(400).json({ success: false, msg: "postId,content and userId are required" });
+    }
     const post = await Post.findById(postId);
 
     if (!post) {
@@ -100,7 +111,18 @@ const addComment = async (req, res) => {
 
 const addReply = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        msg: "Errors",
+        errors: errors.array(),
+      });
+    }
     const { postId, commentId, userId, content } = req.body;
+    if (!postId || !commentId || !userId || !content) {
+      return res.status(400).json({ success: false, msg: "postId ,commentId,content and userId are required" });
+    }
     const post = await Post.findById(postId);
 
     if (!post) {
@@ -113,11 +135,11 @@ const addReply = async (req, res) => {
     }
 
     comment.replies.push({ userId, content });
-    await post.save();
+   const replyData = await post.save();
 
     return res
       .status(200)
-      .json({ success: true, msg: "Reply added", data: post });
+      .json({ success: true, msg: "Reply added", data: replyData });
   } catch (error) {
     return res.status(400).json({ success: false, msg: error.message });
   }
@@ -125,7 +147,18 @@ const addReply = async (req, res) => {
 
 const likePost = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        msg: "Errors",
+        errors: errors.array(),
+      });
+    }
     const { postId, userId } = req.body;
+    if (!postId ||  !userId) {
+      return res.status(400).json({ success: false, msg: "postId and userId are required" });
+    }
     const post = await Post.findById(postId);
 
     if (!post) {
@@ -139,7 +172,7 @@ const likePost = async (req, res) => {
 
     return res
       .status(200)
-      .json({ success: true, msg: "Post liked", data: post });
+      .json({ success: true, msg: "Post liked", data:post });
   } catch (error) {
     return res.status(400).json({ success: false, msg: error.message });
   }
@@ -147,7 +180,18 @@ const likePost = async (req, res) => {
 
 const likeComment = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        msg: "Errors",
+        errors: errors.array(),
+      });
+    }
     const { postId, commentId, userId } = req.body;
+    if (!postId || !commentId || !userId) {
+      return res.status(400).json({ success: false, msg: "postId, commentId, and userId are required" });
+    }
     const post = await Post.findById(postId);
 
     if (!post) {
@@ -174,7 +218,19 @@ const likeComment = async (req, res) => {
 
 const upvotePost = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        msg: "Errors",
+        errors: errors.array(),
+      });
+    }
     const { postId } = req.body;
+    if(!postId){
+      return res.status(400).json({ success: false, msg: "postId is required" });
+
+    }
     const post = await Post.findById(postId);
 
     if (!post) {
