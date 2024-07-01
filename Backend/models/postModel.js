@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const User = require('./user')
 
 const postSchema = new mongoose.Schema({
   title: {
@@ -16,6 +17,7 @@ const postSchema = new mongoose.Schema({
 
     default: "pending",
   },
+  //Track comments on posts
   comments: [{
     userId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -54,10 +56,12 @@ const postSchema = new mongoose.Schema({
       }],
     }]
   }],
-  likes: [{ // Track likes on posts
+   // Track likes on posts
+  likes: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   }],
+  //Track upvotes on posts
   upvotes: {
     type: Number,
     default: 0,

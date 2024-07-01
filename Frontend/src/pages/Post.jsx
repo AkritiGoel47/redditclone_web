@@ -8,6 +8,8 @@ import { FiTool } from "react-icons/fi";
 import { VscEdit } from "react-icons/vsc";
 import { BsTransparency } from "react-icons/bs";
 import { TbBrandAppgallery } from "react-icons/tb";
+import { AiFillLike } from "react-icons/ai";
+import { BiSolidUpvote } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 
@@ -165,13 +167,14 @@ console.log("Posts Data: ", data)
                 <div key={post.id} className={PostCSS.post}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
-                  <button onClick={() => likePost(post._id, 'user_id')}><IoIosAdd /> Like</button>
-                  <button onClick={() => upvotePost(post._id, 'user_id')}><IoIosAdd /> Upvote</button>
+                  <button onClick={() => likePost(post._id, 'user_id')}><AiFillLike /> Like</button>
+                  <button onClick={() => upvotePost(post._id, 'user_id')}><BiSolidUpvote />
+                  Upvote</button>
                   <h4>Comments</h4>
                   {post.comments.map(comment => (
                     <div key={comment._id} className={PostCSS.comment}>
                       <p>{comment.content}</p>
-                      <button onClick={() => likeComment(post._id, comment._id, 'user_id')}><IoIosAdd /> Like</button>
+                      <button onClick={() => likeComment(post._id, comment._id, 'user_id')}><AiFillLike /> Like</button>
                       <h5>Replies</h5>
                       {comment.replies.map(reply => (
                         <div key={reply._id} className={PostCSS.reply}>
@@ -180,13 +183,13 @@ console.log("Posts Data: ", data)
                       ))}
                       <form onSubmit={(e) => { e.preventDefault(); addReply(post._id, comment._id, 'user_id', 'reply_content'); }}>
                         <input type="text" placeholder="Reply..." />
-                        <button type="submit"><IoIosAdd /> Reply</button>
+                        <button type="submit"> Reply</button>
                       </form>
                     </div>
                   ))}
                   <form onSubmit={(e) => { e.preventDefault(); addComment(post._id, 'user_id', 'comment_content'); }}>
                     <input type="text" placeholder="Comment..." />
-                    <button type="submit"><IoIosAdd /> Comment</button>
+                    <button type="submit"> Comment</button>
                   </form>
                 </div>
               ))
