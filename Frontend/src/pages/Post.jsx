@@ -99,6 +99,22 @@ console.log("Posts Data: ", data)
       console.error("Error adding reply:", error.message);
     }
   };
+  const upvotePost = async (postId, userId) => {
+    try {
+      const response = await axios.post(`${url}/api/get-post/upvote`, {
+        userId,
+      });
+
+      if (!response.data.success) {
+        throw new Error(`Failed to upvote post: ${response.data.msg}`);
+      }
+
+      fetchPosts(); // Refresh posts after upvoting a post
+    } catch (error) {
+      console.error("Error upvoting post:", error.message);
+    }
+  };
+
 
   useEffect(() => {
     fetchposts();
@@ -149,8 +165,33 @@ console.log("Posts Data: ", data)
                 <div key={post.id} className={PostCSS.post}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
+                  <button onClick={() => likePost(post._id, 'user_id')}><IoIosAdd /> Like</button>
+                  <button onClick={() => upvotePost(post._id, 'user_id')}><IoIosAdd /> Upvote</button>
+                  <h4>Comments</h4>
+                  {post.comments.map(comment => (
+                    <div key={comment._id} className={PostCSS.comment}>
+                      <p>{comment.content}</p>
+                      <button onClick={() => likeComment(post._id, comment._id, 'user_id')}><IoIosAdd /> Like</button>
+                      <h5>Replies</h5>
+                      {comment.replies.map(reply => (
+                        <div key={reply._id} className={PostCSS.reply}>
+                          <p>{reply.content}</p>
+                        </div>
+                      ))}
+                      <form onSubmit={(e) => { e.preventDefault(); addReply(post._id, comment._id, 'user_id', 'reply_content'); }}>
+                        <input type="text" placeholder="Reply..." />
+                        <button type="submit"><IoIosAdd /> Reply</button>
+                      </form>
+                    </div>
+                  ))}
+                  <form onSubmit={(e) => { e.preventDefault(); addComment(post._id, 'user_id', 'comment_content'); }}>
+                    <input type="text" placeholder="Comment..." />
+                    <button type="submit"><IoIosAdd /> Comment</button>
+                  </form>
                 </div>
               ))
+               
+             
             ) : (
               <p>No posts available</p>
             )}
