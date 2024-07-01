@@ -34,6 +34,71 @@ console.log("Posts Data: ", data)
       console.error("Error fetching posts:", error);
     }
   };
+  const addComment = async (postId, userId, content) => {
+    try {
+      const response = await axios.post(`${url}/api/get-post/comment`, {
+        userId,
+        content,
+      });
+
+      if (!response.data.success) {
+        throw new Error(`Failed to add comment: ${response.data.msg}`);
+      }
+
+      fetchPosts(); // Refresh posts after adding a comment
+    } catch (error) {
+      console.error("Error adding comment:", error.message);
+    }
+  };
+
+  const likePost = async (postId, userId) => {
+    try {
+      const response = await axios.post(`${url}/api/get-post/like`, {
+        userId,
+      });
+
+      if (!response.data.success) {
+        throw new Error(`Failed to like post: ${response.data.msg}`);
+      }
+
+      fetchPosts(); // Refresh posts after liking a post
+    } catch (error) {
+      console.error("Error liking post:", error.message);
+    }
+  };
+
+  const likeComment = async (postId, commentId, userId) => {
+    try {
+      const response = await axios.post(`${url}/api/get-post/commentlike`, {
+        userId,
+      });
+
+      if (!response.data.success) {
+        throw new Error(`Failed to like comment: ${response.data.msg}`);
+      }
+
+      fetchPosts(); // Refresh posts after liking a comment
+    } catch (error) {
+      console.error("Error liking comment:", error.message);
+    }
+  };
+
+  const addReply = async (postId, commentId, userId, content) => {
+    try {
+      const response = await axios.post(`${url}/api/get-post/commentreply`, {
+        userId,
+        content,
+      });
+
+      if (!response.data.success) {
+        throw new Error(`Failed to add reply: ${response.data.msg}`);
+      }
+
+      fetchPosts(); // Refresh posts after adding a reply
+    } catch (error) {
+      console.error("Error adding reply:", error.message);
+    }
+  };
 
   useEffect(() => {
     fetchposts();

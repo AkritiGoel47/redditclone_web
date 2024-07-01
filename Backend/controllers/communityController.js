@@ -14,7 +14,7 @@ const createCommunity = async(req,res) => {
 
 const{name,description,topics,rules} = req.body;
 
-const isExistUser = await User.findOne({ name });
+const isExistUser = await Community.findOne({ name });
     if (isExistUser) {
       return res.status(400).json({
         success: false,

@@ -4,7 +4,7 @@ import { toast, Toaster } from 'react-hot-toast';
 import CommunityCSS from '../assets/styles/Community.module.css';
 
 function Community() {
-  const url ='http://localhost:8000';
+  const url = 'http://localhost:8000';
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [topics, setTopics] = useState([]);
@@ -18,18 +18,21 @@ function Community() {
     try {
       const response = await axios.post(`${url}/api/community`, community, { withCredentials: true });
 
-      if (response.data.success) {
-        toast.success("Community created successfully!");
+      console.log("Backend response:", response.data); // Debug log
+
+      if (response.status === 200) {
+        
         setName('');
         setDescription('');
         setTopics([]);
         setRules('');
+        toast.success( "Community created successfully!");
       } else {
-        toast.error(response.data.msg);
+        toast.error(response.data.msg || "Failed to create community");
       }
     } catch (error) {
-      toast.error('Error creating community');
       console.error('Error creating community:', error);
+      toast.error('Error creating community');
     }
   };
 

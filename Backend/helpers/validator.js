@@ -22,3 +22,33 @@ check('rules','rules is required').not().isEmpty(),
 
 
 ];
+
+exports.commentValidator = [
+    check('postId').not().isEmpty(), 
+  check('userId').not().isEmpty(),
+  check('content').not().isEmpty(),
+];
+
+exports.commentreplyValidator = [
+    check('postId').not().isEmpty(), 
+  check('commentId').not().isEmpty(),
+  check('userId').not().isEmpty(),
+  check('content').not().isEmpty(),
+]
+
+
+exports.likeValidator = [
+    check('postId').not().isEmpty(), // Assuming postId is sent in the request body
+  check('userId').not().isEmpty(),
+];
+
+
+exports.commentlikeValidator = [
+    check('postId').not().isEmpty(), // Assuming postId is sent in the request body
+    check('commentId').not().isEmpty(),
+    check('userId').not().isEmpty(),
+]
+
+exports.upvoteValidator = [
+    check('postId').not().isEmpty(),
+]
