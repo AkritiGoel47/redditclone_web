@@ -10,25 +10,25 @@ return(
 
     <div className={FooterCSS.content}>
     <div className={FooterCSS.header} >    <h3>Company<br/></h3></div>
-    <div className={FooterCSS.footerparagh}>    Reddit,Inc.<br/>
+    <div className={FooterCSS.lineSpacing}>  Reddit,Inc.<br/> </div>
         
-        Careers<br/>
-        Investors<br/>
-        Press Contact <br/>
-        Blog <br/>
-        r/RDDT<br/>
-        </div>
+    <div className={FooterCSS.lineSpacing}>   Careers<br/></div>
+    <div className={FooterCSS.lineSpacing}>   Investors<br/></div>
+    <div className={FooterCSS.lineSpacing}>   Press Contact <br/></div>
+    <div className={FooterCSS.lineSpacing}>   Blog <br/></div>
+    <div className={FooterCSS.lineSpacing}>   r/RDDT<br/></div>
+       
         
 
 
     </div>
     <div className={FooterCSS.content}>
     <div className={FooterCSS.header} > <h3>Community<br/></h3> </div>
-    <div className={FooterCSS.footerparagh}>    Reddit.com<br/>
-        Reddit for Community<br/>
-        Content Policy<br/>
-        Help Center<br/>
-        </div>
+    <div className={FooterCSS.lineSpacing}>    Reddit.com<br/></div>
+    <div className={FooterCSS.lineSpacing}> Reddit for Community<br/></div>
+    <div className={FooterCSS.lineSpacing}>  Content Policy<br/></div>
+    <div className={FooterCSS.lineSpacing}>Help Center<br/></div>
+       
         
        
 
@@ -36,12 +36,12 @@ return(
     </div>
     <div className={FooterCSS.content}>
       <div className={FooterCSS.header} > <h3>Privacy & Safety<br/></h3></div>
-      <div className={FooterCSS.footerparagh}>  Privacy Policy<br/>
-        User Agreement<br/>
-        Transparency Report<br/>
-        r/redditsecurity<br/>
-        Other Terms and Policies <br/>
-        </div>
+      <div className={FooterCSS.lineSpacing}>  Privacy Policy<br/></div>
+      <div className={FooterCSS.lineSpacing}>  User Agreement<br/></div>
+      <div className={FooterCSS.lineSpacing}> Transparency Report<br/></div>
+      <div className={FooterCSS.lineSpacing}>  r/redditsecurity<br/></div>
+      <div className={FooterCSS.lineSpacing}> Other Terms and Policies <br/></div>
+     
         
 
 

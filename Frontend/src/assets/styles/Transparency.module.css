@@ -14,15 +14,97 @@ width:100%;
 
 .h1{
     font-family: "Roboto", sans-serif;
-    margin-left:400px;
+    margin-left:300px;
     font-size:60px;
     font-weight: bold;
 }
 .belowheading{
     font-family: "Roboto", sans-serif;
-    margin-left:400px;
+    margin-left:300px;
     font-weight: bold;
     padding-top:50px;
     justify-content: space-around;
 
+}
+.img{
+    border-radius:30px;
+    width:400px;
+    height:400px
+}
+.h2{
+    font-family: "Roboto", sans-serif;
+    margin-left:500px;
+    font-size:60px;
+    font-weight: bold;
+    padding:40px;
+}
+.boxes{
+    display: flex;
+justify-content: center;
+align-items: center;
+justify-content:space-evenly;
+font-family: "Roboto", sans-serif;
+padding-bottom:80px;
+
+}
+.box1{
+    background-color: rgb(185, 115, 185);
+    padding :80px;
+    border-radius: 20px;
+    border-color: black;
+    outline:solid;
+}
+.box2{
+    background-color:rgb(127, 201, 127);
+    padding :80px;
+    border-radius: 20px;
+    border-color: black;
+    outline:solid;
+}
+.box3{
+    background-color: rgb(122, 122, 192);
+    padding :80px;
+    border-radius: 20px;
+    border-color: black;
+    outline:solid;
+}
+.h3{
+    font-weight: bold;
+    font-size:20px;
+}
+
+.p{
+    padding-top:10px;
+    
+    
+}
+.boxes2{
+    display: flex;
+justify-content: center;
+align-items: center;
+justify-content:space-evenly;
+font-family: "Roboto", sans-serif;
+padding-bottom:80px;
+
+}
+.box4{
+    background-color:rgb(181, 104, 117);
+    padding :80px;
+    border-radius: 20px;
+    border-color: black;
+    outline:solid;
+}
+.box5{
+    background-color:rgb(93, 54, 54);
+    padding :80px;
+    border-radius: 20px;
+    border-color: black;
+    outline:solid;
+}
+.box6{
+    background-color: rgb(212, 171, 136);
+    padding :80px;
+    border-radius: 20px;
+    border-color: black;
+    outline:solid;
 }
