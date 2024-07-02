@@ -155,13 +155,14 @@ justify-content: center;
    margin-left: 150px;
    font-size: medium;
    margin-top: 50px;
+   align-items: center;
    justify-content: space-between;
  }
 
  .footerparagh{
- display: flex;
- flex-direction: column;
- justify-content: space-between;
+ padding: 20px;
+ font-weight: bold;
+ 
  }
 .header1{
   color: orangered;
@@ -171,7 +172,7 @@ margin-left: 30px;
 }
    .header{
     color: orangered;
-    font-size:large;
+    font-size:x-large;
     
 
    } 
