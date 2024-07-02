@@ -7,18 +7,17 @@ return(
 
 
 <div className={FooterCSS.container}>
-<div className={FooterCSS.header1} ><h2>
-        reddit
-    </h2></div>
+
     <div className={FooterCSS.content}>
     <div className={FooterCSS.header} >    <h3>Company<br/></h3></div>
-        Reddit,Inc.<br/>
+       Reddit,Inc.<br/>
         
         Careers<br/>
         Investors<br/>
         Press Contact <br/>
         Blog <br/>
         r/RDDT<br/>
+        
 
 
     </div>

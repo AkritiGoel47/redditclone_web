@@ -141,7 +141,7 @@
     background-color: black;
     
     
-   padding:30px;
+   padding:80px;
    display: flex;
    
 justify-content: center;
@@ -155,15 +155,14 @@ justify-content: center;
    margin-left: 150px;
    font-size: medium;
    margin-top: 50px;
-   justify-content: space-around;
- 
+   justify-content: space-between;
+ }
 
- 
-   
-
-  
-
-   }
+ .footerparagh{
+ display: flex;
+ flex-direction: column;
+ justify-content: space-between;
+ }
 .header1{
   color: orangered;
     font-size:large;

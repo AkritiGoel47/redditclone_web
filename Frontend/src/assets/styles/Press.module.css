@@ -3,19 +3,24 @@
 .background{
     height:80vh;
 background-color:#ff4500;
-    padding-top:300px;
+    padding-top:200px;
+    display: flex;
+    justify-content: center;
+    justify-content:space-evenly;
+align-items: center;
+width:100%;
     
 }
 
 .h1{
     font-family: "Roboto", sans-serif;
-    margin-left:700px;
+    margin-left:400px;
     font-size:60px;
     font-weight: bold;
 }
 .belowheading{
     font-family: "Roboto", sans-serif;
-    margin-left:700px;
+    margin-left:400px;
     font-weight: bold;
     padding-top:50px;
     justify-content: space-around;
@@ -35,6 +40,7 @@ justify-content: center;
 align-items: center;
 justify-content:space-evenly;
 font-family: "Roboto", sans-serif;
+padding-bottom:80px;
 
 }
 .box1{
@@ -55,4 +61,12 @@ font-family: "Roboto", sans-serif;
 .h3{
     font-weight: bold;
     font-size:20px;
+}
+
+.p{
+    padding-top:10px;
+    
+}
+.img{
+    border-radius:30px;
 }
