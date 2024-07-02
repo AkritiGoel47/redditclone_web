@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const mongoose = require("mongoose");
 const Post = require("../models/postModel");
 const createPost = async (req, res) => {
   try {
@@ -89,8 +90,13 @@ const addComment = async (req, res) => {
       });
     }
     const { postId, userId, content } = req.body;
-    if (!postId ||!content ||  !userId) {
-      return res.status(400).json({ success: false, msg: "postId,content and userId are required" });
+    if (!postId || !content || !userId) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          msg: "postId,content and userId are required",
+        });
     }
     const post = await Post.findById(postId);
 
@@ -98,7 +104,7 @@ const addComment = async (req, res) => {
       return res.status(404).json({ success: false, msg: "Post not found" });
     }
 
-    post.comments.push({ userId, content });
+    post.comment.push({ userId, content });
     await post.save();
 
     return res
@@ -121,7 +127,12 @@ const addReply = async (req, res) => {
     }
     const { postId, commentId, userId, content } = req.body;
     if (!postId || !commentId || !userId || !content) {
-      return res.status(400).json({ success: false, msg: "postId ,commentId,content and userId are required" });
+      return res
+        .status(400)
+        .json({
+          success: false,
+          msg: "postId ,commentId,content and userId are required",
+        });
     }
     const post = await Post.findById(postId);
 
@@ -135,7 +146,7 @@ const addReply = async (req, res) => {
     }
 
     comment.replies.push({ userId, content });
-   const replyData = await post.save();
+    const replyData = await post.save();
 
     return res
       .status(200)
@@ -155,29 +166,41 @@ const likePost = async (req, res) => {
         errors: errors.array(),
       });
     }
-    const { postId, userId } = req.body;
-    if (!postId ||  !userId) {
-      return res.status(400).json({ success: false, msg: "postId and userId are required" });
+    const { postId } = req.body;
+    const userId = req.cookies.user_id;
+    if (!postId || !userId) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "postId and userId are required" });
     }
+    if (
+      !mongoose.Types.ObjectId.isValid(postId) ||
+      !mongoose.Types.ObjectId.isValid(userId)
+    ) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "Invalid postId or userId format" });
+    }
+
     const post = await Post.findById(postId);
 
     if (!post) {
       return res.status(404).json({ success: false, msg: "Post not found" });
     }
 
-    if (!post.likes.includes(userId)) {
-      post.likes.push(userId);
+    if (!post.like.includes(userId)) {
+      post.like.push(userId);
       await post.save();
     }
 
     return res
       .status(200)
-      .json({ success: true, msg: "Post liked", data:post });
+      .json({ success: true, msg: "Post liked", data: post });
   } catch (error) {
+    console.error("Error in likePost:", error);
     return res.status(400).json({ success: false, msg: error.message });
   }
 };
-
 const likeComment = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -188,9 +211,16 @@ const likeComment = async (req, res) => {
         errors: errors.array(),
       });
     }
-    const { postId, commentId, userId } = req.body;
+
+    const { postId, commentId } = req.body;
+    const userId = req.cookies.user_id;
     if (!postId || !commentId || !userId) {
-      return res.status(400).json({ success: false, msg: "postId, commentId, and userId are required" });
+      return res
+        .status(400)
+        .json({
+          success: false,
+          msg: "postId, commentId, and userId are required",
+        });
     }
     const post = await Post.findById(postId);
 
@@ -198,13 +228,13 @@ const likeComment = async (req, res) => {
       return res.status(404).json({ success: false, msg: "Post not found" });
     }
 
-    const comment = post.comments.id(commentId);
+    const comment = post.comment.id(commentId);
     if (!comment) {
       return res.status(404).json({ success: false, msg: "Comment not found" });
     }
 
-    if (!comment.likes.includes(userId)) {
-      comment.likes.push(userId);
+    if (!comment.like.includes(userId)) {
+      comment.like.push(userId);
       await post.save();
     }
 
@@ -226,10 +256,11 @@ const upvotePost = async (req, res) => {
         errors: errors.array(),
       });
     }
-    const { postId } = req.body;
-    if(!postId){
-      return res.status(400).json({ success: false, msg: "postId is required" });
-
+    const { postId, userId } = req.body;
+    if (!postId || !userId) {
+      return res
+        .status(400)
+        .json({ success: false, msg: "postId and userId are required" });
     }
     const post = await Post.findById(postId);
 
@@ -237,7 +268,7 @@ const upvotePost = async (req, res) => {
       return res.status(404).json({ success: false, msg: "Post not found" });
     }
 
-    post.upvotes += 1;
+    post.upvote += 1;
     await post.save();
 
     return res
@@ -247,7 +278,12 @@ const upvotePost = async (req, res) => {
     return res.status(400).json({ success: false, msg: error.message });
   }
 };
+// const getuserid = async (req, res) => {
+  
 
+//     return res.status(200).json({ success: true, user_id: req.user_id,  });
+  
+// };
 module.exports = {
   createPost,
   getPost,
@@ -257,4 +293,5 @@ module.exports = {
   likePost,
   likeComment,
   upvotePost,
+ 
 };

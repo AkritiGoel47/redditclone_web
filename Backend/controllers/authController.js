@@ -86,9 +86,15 @@ const loginUser = async (req, res) => {
     const accessToken = await generateAccessToken({ user: userData });
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
-      secure: process.env.NODE_ENV, // Set to true in production
+      secure: process.env.NODE_ENV, 
       maxAge: 2 * 60 * 60 * 1000, // 2 hours
     });
+    res.cookie("user_id", userData._id.toString(), {
+      httpOnly: true,
+      secure: process.env.NODE_ENV, 
+      maxAge: 2 * 60 * 60 * 1000, // 2 hours
+    });
+
 
     
 

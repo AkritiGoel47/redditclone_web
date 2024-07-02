@@ -24,31 +24,31 @@ check('rules','rules is required').not().isEmpty(),
 ];
 
 exports.commentValidator = [
-    check('postId').not().isEmpty(), 
-  check('userId').not().isEmpty(),
+    check('postId').not().isEmpty().isMongoId().withMessage('Invalid postId format'), 
+  check('userId').not().isEmpty().isMongoId().withMessage('Invalid userId format'),
   check('content').not().isEmpty(),
 ];
 
 exports.commentreplyValidator = [
-    check('postId').not().isEmpty(), 
-  check('commentId').not().isEmpty(),
-  check('userId').not().isEmpty(),
+    check('postId').not().isEmpty().isMongoId().withMessage('Invalid postId format'),
+  check('commentId').not().isEmpty().isMongoId().withMessage('Invalid commentId format'),
+  check('userId').not().isEmpty().isMongoId().withMessage('Invalid userId format'),
   check('content').not().isEmpty(),
 ]
 
 
 exports.likeValidator = [
-    check('postId').not().isEmpty(), // Assuming postId is sent in the request body
-  check('userId').not().isEmpty(),
+    check('postId').not().isEmpty().isMongoId().withMessage('Invalid postId format'), // Assuming postId is sent in the request body
+  check('userId').not().isEmpty().isMongoId().withMessage('Invalid userId format'),
 ];
 
 
 exports.commentlikeValidator = [
-    check('postId').not().isEmpty(), // Assuming postId is sent in the request body
-    check('commentId').not().isEmpty(),
-    check('userId').not().isEmpty(),
+    check('postId').not().isEmpty().isMongoId().withMessage('Invalid postId format'), // Assuming postId is sent in the request body
+    check('commentId').not().isEmpty().isMongoId().withMessage('Invalid commentId format'),
+    check('userId').not().isEmpty().isMongoId().withMessage('Invalid userId format'),
 ]
 
 exports.upvoteValidator = [
-    check('postId').not().isEmpty(),
+    check('postId').not().isEmpty().isMongoId().withMessage('Invalid postId format'),
 ]

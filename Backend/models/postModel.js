@@ -18,11 +18,11 @@ const postSchema = new mongoose.Schema({
     default: "pending",
   },
   //Track comments on posts
-  comments: [{
+  comment: [{
     userId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
+      
     },
     content: {
       type: String,
@@ -32,37 +32,37 @@ const postSchema = new mongoose.Schema({
       type: Date,
       default: Date.now,
     },
-    likes: [{
+    like: [{
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     }],
-    replies: [{
+    reply: [{
       userId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: true,
+        
       },
       content: {
         type: String,
-        required: true,
+        
       },
       createdAt: {
         type: Date,
         default: Date.now,
       },
-      likes: [{
+      like: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
       }],
     }]
   }],
    // Track likes on posts
-  likes: [{
+  like: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   }],
   //Track upvotes on posts
-  upvotes: {
+  upvote: {
     type: Number,
     default: 0,
   },

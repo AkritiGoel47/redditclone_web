@@ -14,7 +14,7 @@ router.post('/get-post/comment',verifyToken,commentValidator,postController.addC
 router.post('/get-post/commentreply',verifyToken,commentreplyValidator,postController.addReply);
 router.post('/get-post/commentlike',verifyToken,commentlikeValidator,postController.likeComment);
 router.post('/get-post/like',verifyToken,likeValidator,postController.likePost);
-router.post('get-post/upvote',verifyToken,upvoteValidator,postController.upvotePost);
+router.post('/get-post/upvote',verifyToken,upvoteValidator,postController.upvotePost);
 
 
  
