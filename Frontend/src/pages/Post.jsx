@@ -11,7 +11,6 @@ import { TbBrandAppgallery } from "react-icons/tb";
 import { AiFillLike } from "react-icons/ai";
 import { BiSolidUpvote } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import Cookies from 'js-cookie';
 
 
 
@@ -19,9 +18,28 @@ import Cookies from 'js-cookie';
 function Post() {
   const url = "http://localhost:8000";
   const [posts, setPosts] = useState([]);
-  const [userId, setUserId] = useState(null);
+  const [user_id, setUserId] = useState(null);
 
- 
+  useEffect(() => {
+    
+    const fetchUserId = async () => {
+      try {
+        const response = await axios.get(`${url}/api/get-userid`, {
+          withCredentials: true 
+        });
+
+        if (response.data.success) {
+          setUserId(response.data.user_id); 
+        } else {
+          throw new Error(`Failed to fetch user_id: ${response.data.msg}`);
+        }
+      } catch (error) {
+        console.error("Error fetching user_id:", error.message);
+      }
+    };
+
+    fetchUserId(); 
+  }, []);
   
   
   const fetchposts = async () => {
@@ -40,19 +58,7 @@ console.log("Posts Data: ", data)
       console.error("Error fetching posts:", error);
     }
   };
-
-  useEffect(() => {
-    // Fetch user_id from cookies
-    const userIdFromCookie = Cookies.get('user_id');
-    if (userIdFromCookie) {
-      setUserId(userIdFromCookie);
-    } else {
-      console.error("User ID not found in cookies.");
-    }
-
-    fetchposts();
-  }, []);
-  const addComment = async (postId, content) => {
+  const addComment = async (postId, userId, content) => {
     try {
       const response = await axios.post(`${url}/api/get-post/comment`, {
         userId,
@@ -70,7 +76,7 @@ console.log("Posts Data: ", data)
     }
   };
 
-  const likePost = async (postId) => {
+  const likePost = async (postId, userId) => {
     try {
       
 
@@ -100,7 +106,7 @@ console.log("Posts Data: ", data)
     }
   };
 
-  const likeComment = async (postId, commentId) => {
+  const likeComment = async (postId, commentId, userId) => {
     try {
       const response = await axios.post(`${url}/api/get-post/commentlike`, {
         userId,
@@ -118,7 +124,7 @@ console.log("Posts Data: ", data)
     }
   };
 
-  const addReply = async (postId, commentId, content) => {
+  const addReply = async (postId, commentId, userId, content) => {
     try {
       const response = await axios.post(`${url}/api/get-post/commentreply`, {
         userId,
@@ -136,7 +142,7 @@ console.log("Posts Data: ", data)
       console.error("Error adding reply:", error.message);
     }
   };
-  const upvotePost = async (postId) => {
+  const upvotePost = async (postId, userId) => {
     try {
       const response = await axios.post(`${url}/api/get-post/upvote`, {
         userId,
@@ -203,30 +209,30 @@ console.log("Posts Data: ", data)
                 <div key={post.id} className={PostCSS.post}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
-                  <button onClick={() => likePost(post._id
+                  <button onClick={() => likePost(post._id, user._id
    
  
 )}><AiFillLike /> Like</button>
-                  <button onClick={() => upvotePost(post._id,)}><BiSolidUpvote />
+                  <button onClick={() => upvotePost(post._id, user._id)}><BiSolidUpvote />
                   Upvote</button>
                   <h4>Comments</h4>
                   {post.comment.map(comment => (
                     <div key={comment._id} className={PostCSS.comment}>
                       <p>{comment.content}</p>
-                      <button onClick={() => likeComment(post._id, comment._id)}><AiFillLike /> Like</button>
+                      <button onClick={() => likeComment(post._id, comment._id, user._id)}><AiFillLike /> Like</button>
                       <h5>Replies</h5>
                       {comment.reply.map(reply => (
                         <div key={reply._id} className={PostCSS.reply}>
                           <p>{reply.content}</p>
                         </div>
                       ))}
-                      <form onSubmit={(e) => { e.preventDefault(); addReply(post._id, comment._id, 'reply_content'); }}>
+                      <form onSubmit={(e) => { e.preventDefault(); addReply(post._id, comment._id, user._id, 'reply_content'); }}>
                         <input type="text" placeholder="Reply..." />
                         <button type="submit"> Reply</button>
                       </form>
                     </div>
                   ))}
-                  <form onSubmit={(e) => { e.preventDefault(); addComment(post._id, 'comment_content'); }}>
+                  <form onSubmit={(e) => { e.preventDefault(); addComment(post._id, user._id, 'comment_content'); }}>
                     <input type="text" placeholder="Comment..." />
                     <button type="submit"> Comment</button>
                   </form>
