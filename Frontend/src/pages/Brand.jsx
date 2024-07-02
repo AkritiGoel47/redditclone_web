@@ -16,7 +16,9 @@ function Brand() {
 <img src ="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAVcaul15jXxC8vX2v-WMq4ShKQSHa8U7XAA&s" className={BrandCSS.img} />
        
       </div>
-<div >
+<div className={BrandCSS.background2}>
+<img src="https://www.redditinc.com/assets/images/site/Reddit_Icon_FullColor-1_2023-11-29-161416_munx.jpg" className={BrandCSS.img2} />
+
 <div className={BrandCSS.text}>
       <h1 className={BrandCSS.h2}> The Reddit Logo</h1>
       <p className={BrandCSS.belowheading2}>Designed to convey the conversational,
@@ -31,7 +33,23 @@ function Brand() {
          <br/> Reddit itself, the Reddit icon should appear on all
          <br/> marketing and communications about Reddit.</p>
          </div>
-<img src="https://www.redditinc.com/assets/images/site/Reddit_Icon_FullColor-1_2023-11-29-161416_munx.jpg" className={BrandCSS.img2} />
+
+      </div>
+      <div className={BrandCSS.background3}>
+        <div className={BrandCSS.text}>
+      <h1 className={BrandCSS.h3}>Snoo</h1>
+      <p className={BrandCSS.belowheading4}>Discovery and exploration are integral to Reddit,<br/>
+       so appropriately our mascot is exceptionally<br/>
+        curious about our world and the people in it.</p>  
+        <p className={BrandCSS.belowheading5}> Why Snoo? Because everyone has needed to see a <br/>
+        friendly face at some point in their life. Everyone<br/>
+         has felt like an outsider. And everyone has needed <br/>
+         to talk with someone or ask a question. Snoo is a <br/>
+         visitor to our world whose curiosity is a common<br/>
+          thread across the broad community of people who<br/>
+           use Reddit.</p>
+           </div>
+<img src="https://www.redditinc.com/assets/images/site/Rectangle-2776-1.png" className={BrandCSS.img3} />
       </div>
     <Footer />
     </div>

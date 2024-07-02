@@ -30,6 +30,7 @@ function Post() {
 
         if (response.data.success) {
           setUserId(response.data.user_id); 
+          console.log(response.data);
         } else {
           throw new Error(`Failed to fetch user_id: ${response.data.msg}`);
         }
@@ -209,30 +210,30 @@ console.log("Posts Data: ", data)
                 <div key={post.id} className={PostCSS.post}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
-                  <button onClick={() => likePost(post._id, user._id
+                  <button onClick={() => likePost(post._id, user_id
    
  
 )}><AiFillLike /> Like</button>
-                  <button onClick={() => upvotePost(post._id, user._id)}><BiSolidUpvote />
+                  <button onClick={() => upvotePost(post._id, user_id)}><BiSolidUpvote />
                   Upvote</button>
                   <h4>Comments</h4>
                   {post.comment.map(comment => (
                     <div key={comment._id} className={PostCSS.comment}>
                       <p>{comment.content}</p>
-                      <button onClick={() => likeComment(post._id, comment._id, user._id)}><AiFillLike /> Like</button>
+                      <button onClick={() => likeComment(post._id, comment._id, user_id)}><AiFillLike /> Like</button>
                       <h5>Replies</h5>
                       {comment.reply.map(reply => (
                         <div key={reply._id} className={PostCSS.reply}>
                           <p>{reply.content}</p>
                         </div>
                       ))}
-                      <form onSubmit={(e) => { e.preventDefault(); addReply(post._id, comment._id, user._id, 'reply_content'); }}>
+                      <form onSubmit={(e) => { e.preventDefault(); addReply(post._id, comment._id, user_id, 'reply_content'); }}>
                         <input type="text" placeholder="Reply..." />
                         <button type="submit"> Reply</button>
                       </form>
                     </div>
                   ))}
-                  <form onSubmit={(e) => { e.preventDefault(); addComment(post._id, user._id, 'comment_content'); }}>
+                  <form onSubmit={(e) => { e.preventDefault(); addComment(post._id, user_id, 'comment_content'); }}>
                     <input type="text" placeholder="Comment..." />
                     <button type="submit"> Comment</button>
                   </form>
