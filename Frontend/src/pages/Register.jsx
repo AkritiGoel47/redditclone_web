@@ -5,7 +5,7 @@ import { useNavigate,Link } from "react-router-dom";
 import  RegisterCSS from "../assets/styles/Register.module.css";
 import { FaUser,FaLock  } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { FaUserTie } from "react-icons/fa";
+
 
 
 
