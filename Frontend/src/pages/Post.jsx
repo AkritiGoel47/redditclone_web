@@ -45,14 +45,14 @@ function Post() {
   
   const fetchposts = async () => {
     try {
-      const response = await fetch(`${url}/api/get-post`);
+      const response = await axios.get(`${url}/api/get-post`);
       
       
-      if (!response.ok) {
+      if (response.status !== 200) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      const data = await response.json();
+      const data = await response.data;
 console.log("Posts Data: ", data)
       setPosts(data.data);
     } catch (error) {

@@ -1,6 +1,6 @@
 const express= require('express');
 const router = express.Router()
-const auth =require('../middlewares/authMiddleware')
+const {verifyToken} =require('../middlewares/authMiddleware')
 const cors =require ('cors');
 const authController = require ('../controllers/authController');
 const {registerValidator,loginValidator}= require('../helpers/validator');

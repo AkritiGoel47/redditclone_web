@@ -8,7 +8,7 @@ const communityController = require ('../controllers/communityController')
 
 //post routes
 router.post('/create-post',verifyToken,createPostValidator, postController.createPost)
-router.get('/get-post',postController.getPost)
+router.get('/get-post',verifyToken,postController.getPost)
 router.post('/delete-post',verifyToken,deletePostValidator, postController.deletePost)
 router.post('/get-post/comment',verifyToken,commentValidator,postController.addComment);
 router.post('/get-post/commentreply',verifyToken,commentreplyValidator,postController.addReply);
