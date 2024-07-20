@@ -90,7 +90,8 @@ console.log("Posts Data: ", data)
         throw new Error(`Failed to like post: ${response.data.msg}`);
       }
 
-      fetchposts(); 
+       fetchposts(); 
+     
     }  catch (error) {
       if (error.response) {
         
@@ -154,7 +155,8 @@ console.log("Posts Data: ", data)
         throw new Error(`Failed to upvote post: ${response.data.msg}`);
       }
 
-      fetchposts(); // Refresh posts after upvoting a post
+     fetchposts(); // Refresh posts after upvoting a post
+    
     } catch (error) {
       console.error("Error upvoting post:", error.message);
     }
@@ -210,16 +212,18 @@ console.log("Posts Data: ", data)
                 <div key={post.id} className={PostCSS.post}>
                   <h3>{post.title}</h3>
                   <p>{post.description}</p>
-                  <button onClick={() => likePost(post._id, user_id
+                  <button 
+                    onClick={() => likePost(post._id, user_id)}
    
  
-)}><AiFillLike /> Like</button>
-                  <button onClick={() => upvotePost(post._id, user_id)}><BiSolidUpvote />
+><AiFillLike /> Like</button>
+                  <button 
+                    onClick={() => upvotePost(post._id, user_id)}><BiSolidUpvote />
                   Upvote</button>
                   <h4>Comments</h4>
                   {post.comment.map(comment => (
                     <div key={comment._id} className={PostCSS.comment}>
-                      <p>{comment.content}</p>
+                   
                       <button onClick={() => likeComment(post._id, comment._id, user_id)}><AiFillLike /> Like</button>
                       <h5>Replies</h5>
                       {comment.reply.map(reply => (

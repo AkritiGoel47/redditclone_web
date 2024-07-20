@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast, Toaster } from 'react-hot-toast';
+import { Link } from "react-router-dom";
 import CommunityCSS from '../assets/styles/Community.module.css';
 
 function Community() {
@@ -49,34 +50,38 @@ function Community() {
     <div className={CommunityCSS.background}>
       <Toaster />
       <div className={CommunityCSS.inside}>
-        <h2>Create Community</h2>
+        <h2 className={CommunityCSS.heading}>Create Community</h2>
         <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name:</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          <div className={CommunityCSS.content}>
+            <div className={CommunityCSS.name}>
+              <label className={CommunityCSS.label}>Name:</label>
+              <input type="text" className={CommunityCSS.input} value={name} onChange={(e) => setName(e.target.value)} required />
+            </div>
+            <div className={CommunityCSS.description}>
+              <label className={CommunityCSS.label}>Description:</label>
+              <textarea className={CommunityCSS.textarea} value={description} onChange={(e) => setDescription(e.target.value)} required />
+            </div>
+            <div className={CommunityCSS.topics}>
+              <label className={CommunityCSS.label}>Topics:</label>
+              {["Technology", "Science", "Gaming", "Music", "Movies", "Books", "Art", "Sports", "News", "Memes"].map((topic, index) => (
+                <div key={index} className={CommunityCSS.checkbox}>
+                  <input
+                    type="checkbox"
+                    value={topic}
+                    className={CommunityCSS.checkboxInput}
+                    onChange={handleTopicChange}
+                  />
+                  <label className={CommunityCSS.checkboxLabel}>{topic}</label>
+                </div>
+              ))}
+            </div>
+            <div className={CommunityCSS.rules}>
+              <label className={CommunityCSS.label}>Rules:</label>
+              <textarea className={CommunityCSS.textarea} value={rules} onChange={(e) => setRules(e.target.value)} required />
+            </div>
+            <button type="submit" ><Link to='/create'  className={CommunityCSS.submit}>Create Community
+            </Link></button>
           </div>
-          <div>
-            <label>Description:</label>
-            <textarea value={description} onChange={(e) => setDescription(e.target.value)} required />
-          </div>
-          <div>
-            <label>Topics:</label>
-            {["Technology", "Science", "Gaming", "Music", "Movies", "Books", "Art", "Sports", "News", "Memes"].map((topic, index) => (
-              <div key={index}>
-                <input
-                  type="checkbox"
-                  value={topic}
-                  onChange={handleTopicChange}
-                />
-                <label>{topic}</label>
-              </div>
-            ))}
-          </div>
-          <div>
-            <label>Rules:</label>
-            <textarea value={rules} onChange={(e) => setRules(e.target.value)} required />
-          </div>
-          <button type="submit">Create Community</button>
         </form>
       </div>
     </div>

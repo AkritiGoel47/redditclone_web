@@ -42,14 +42,10 @@ app.use("/api", commonRoute);
 
 
 app.use(express.static("public"));
-
-app.listen(PORT,'0.0.0.0', () => {
-  console.log(`Server is running on port ${PORT}`);
-});
 const users = {};
 
 io.on('connection', (socket) => {
-  console.log('a user connected:', socket.id);
+  console.log('A user connected:', socket.id);
 
   socket.on('register', (userId) => {
     users[userId] = socket.id;
@@ -57,7 +53,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
-    console.log('user disconnected:', socket.id);
+    console.log('User disconnected:', socket.id);
     for (const [userId, socketId] of Object.entries(users)) {
       if (socketId === socket.id) {
         delete users[userId];
@@ -69,20 +65,27 @@ io.on('connection', (socket) => {
   socket.on('private message', async (data) => {
     const { senderId, recipientId, message } = data;
 
-    const chatMessage = new Chat({
-      sender: senderId,
-      recipient: recipientId,
-      message,
-    });
-
     try {
+      // Assuming 'Chat' is your mongoose model for storing messages
+      const chatMessage = new Chat({
+        sender: senderId,
+        recipient: recipientId,
+        message,
+      });
+
       await chatMessage.save();
+
       const recipientSocketId = users[recipientId];
       if (recipientSocketId) {
         io.to(recipientSocketId).emit('private message', message);
       }
     } catch (err) {
-      console.error('Failed to save chat message', err);
+      console.error('Failed to save chat message:', err);
     }
   });
+});
+
+
+app.listen(PORT,'0.0.0.0', () => {
+  console.log(`Server is running on port ${PORT}`);
 });

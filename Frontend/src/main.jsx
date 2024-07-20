@@ -15,6 +15,8 @@ import Post from "./pages/Post.jsx";
 import CreatingPost from './pages/CreatingPost.jsx';
 import Admin from './pages/Admin.jsx'
 import Community from './pages/Community.jsx';
+import PrivateMessage from './pages/Chat.jsx';
+
 
 axios.defaults.baseURL = "http://localhost:8000";
 axios.defaults.withCredentials = true;
@@ -71,6 +73,11 @@ const router = createBrowserRouter([
         path:'community',
         element:<Community />
       },
+      {
+        path:'chat',
+        element:< PrivateMessage />
+      }
+      
       
      
     ]

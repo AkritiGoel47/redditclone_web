@@ -3,6 +3,7 @@ import PostNavbarCSS from '../assets/styles/PostNavbar.module.css'
 import { FaReddit } from "react-icons/fa6";
 import { IoIosSearch,IoIosAdd  } from "react-icons/io";
 import {Link} from "react-router-dom"
+import { IoChatbubbleEllipsesSharp } from "react-icons/io5";
 
 function PostNavbar() {
   return (
@@ -13,6 +14,8 @@ function PostNavbar() {
       <IoIosSearch className={PostNavbarCSS.icon2}/>
         <input className={PostNavbarCSS.input} type="text" placeholder="Search Reddit" />
       </div> 
+
+     <Link to="/chat"> <IoChatbubbleEllipsesSharp className={PostNavbarCSS.chat}  /></Link>
       <IoIosAdd className={PostNavbarCSS.plus}/>
    
     
