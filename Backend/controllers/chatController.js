@@ -12,7 +12,7 @@ const sendPrivateMessage = async (socket, data) => {
     if (!senderId || !recipientId || !message) {
       throw new Error('Sender ID, recipient ID, and message are required');
     }
-
+    // const io = new socketIo.Server;
     const chatMessage = new Chat({
       sender: senderId,
       recipient: recipientId,
