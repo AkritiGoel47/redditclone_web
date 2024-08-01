@@ -1,33 +1,44 @@
+
+
+
 import React, { useState } from 'react';
 import axios from 'axios';
 import { toast, Toaster } from 'react-hot-toast';
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Use useNavigate for navigation
 import CommunityCSS from '../assets/styles/Community.module.css';
 
 function Community() {
-  const url = 'http://localhost:8000';
+  const url = 'https://redditclone-web-backend.onrender.com';
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [topics, setTopics] = useState([]);
   const [rules, setRules] = useState('');
+  const [isCommunityCreated, setIsCommunityCreated] = useState(false); // Track community creation status
+
+  const navigate = useNavigate(); // Hook for navigation
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!name || !description || topics.length === 0 || !rules) {
+      toast.error("Please fill out all fields.");
+      return;
+    }
 
     const community = { name, description, topics, rules };
 
     try {
       const response = await axios.post(`${url}/api/community`, community, { withCredentials: true });
 
-      console.log("Backend response:", response.data); // Debug log
+      console.log("Backend response:", response.data);
 
       if (response.status === 200) {
-        
         setName('');
         setDescription('');
         setTopics([]);
         setRules('');
-        toast.success( "Community created successfully!");
+        setIsCommunityCreated(true);
+        toast.success("Community created successfully!");
       } else {
         toast.error(response.data.msg || "Failed to create community");
       }
@@ -45,6 +56,11 @@ function Community() {
       setTopics(topics.filter(topic => topic !== value));
     }
   };
+
+  // Redirect to Create Post page if the community is created successfully
+  if (isCommunityCreated) {
+    navigate('/create');
+  }
 
   return (
     <div className={CommunityCSS.background}>
@@ -79,8 +95,7 @@ function Community() {
               <label className={CommunityCSS.label}>Rules:</label>
               <textarea className={CommunityCSS.textarea} value={rules} onChange={(e) => setRules(e.target.value)} required />
             </div>
-            <button type="submit" ><Link to='/create'  className={CommunityCSS.submit}>Create Community
-            </Link></button>
+            <button type="submit" className={CommunityCSS.submit}>Create Community</button>
           </div>
         </form>
       </div>
@@ -89,3 +104,4 @@ function Community() {
 }
 
 export default Community;
+

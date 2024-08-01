@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 import { FaLock } from "react-icons/fa";
 
 function Login() {
-  const url = "http://localhost:8000";
+  const url = "https://redditclone-web-backend.onrender.com";
   const navigate = useNavigate();
   const [data, setData] = useState({
     email: "",

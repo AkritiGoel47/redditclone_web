@@ -14,7 +14,8 @@ const createPost = async (req, res) => {
 
     const { title, description } = req.body;
 
-    const post = new Post({ title, description, status: "pending" });
+    const post = new Post({ title, description, status: "pending",likes: [], 
+      upvotes: []  });
 
     const postData = await post.save();
     const postfullData = await Post.findOne({ _id: postData._id });
@@ -33,7 +34,11 @@ const createPost = async (req, res) => {
 };
 const getPost = async (req, res) => {
   try {
+
+    const userId = req.cookies.user_id;
     const postData = await Post.find({ status: "approved" });
+    
+
     return res.status(200).json({
       success: true,
       msg: "Post fetched successfully!",
@@ -41,7 +46,7 @@ const getPost = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      success: failure,
+      success: false,
       msg: error.message,
     });
   }
@@ -74,7 +79,7 @@ const deletePost = async (req, res) => {
     });
   } catch (error) {
     return res.status(400).json({
-      success: failure,
+      success: false,
       msg: error.message,
     });
   }
@@ -246,6 +251,7 @@ const likeComment = async (req, res) => {
   }
 };
 
+
 const upvotePost = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -256,24 +262,24 @@ const upvotePost = async (req, res) => {
         errors: errors.array(),
       });
     }
-    const { postId, userId } = req.body;
+    const { postId } = req.body;
+    const userId = req.cookies.user_id;
     if (!postId || !userId) {
-      return res
-        .status(400)
-        .json({ success: false, msg: "postId and userId are required" });
+      return res.status(400).json({ success: false, msg: "postId and userId are required" });
     }
+
     const post = await Post.findById(postId);
 
     if (!post) {
       return res.status(404).json({ success: false, msg: "Post not found" });
     }
 
-    post.upvote += 1;
-    await post.save();
+    if (!post.upvote.includes(userId)) {
+      post.upvote.push(userId);
+      await post.save();
+    }
 
-    return res
-      .status(200)
-      .json({ success: true, msg: "Post upvoted", data: post });
+    return res.status(200).json({ success: true, msg: "Post upvoted", data: post });
   } catch (error) {
     return res.status(400).json({ success: false, msg: error.message });
   }

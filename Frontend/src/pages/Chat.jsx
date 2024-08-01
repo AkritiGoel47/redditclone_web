@@ -1,26 +1,60 @@
 
 
 
-import React, { useState, useEffect } from 'react';
+
+import React, { useState, useEffect, useRef } from 'react';
 import { io } from 'socket.io-client';
 import { toast, Toaster } from 'react-hot-toast';
 import PrivateMessageCSS from '../assets/styles/PrivateMessage.module.css';
+import axios from 'axios';
 
-const PrivateMessage = ({ userId }) => {
+const PrivateMessage = () => {
   const [socket, setSocket] = useState(null);
   const [recipientId, setRecipientId] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const url = "http://localhost:8000";
+  const [userId, setUserId] = useState(null);
+  const url = "https://redditclone-web-backend.onrender.com";
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const response = await axios.get(`${url}/api/get-userid`, {
+          withCredentials: true 
+        });
+
+        if (response.data.success) {
+          setUserId(response.data.user_id);
+        } else {
+          throw new Error(`Failed to fetch user_id: ${response.data.msg}`);
+        }
+      } catch (error) {
+        console.error("Error fetching user_id:", error.message);
+      }
+    };
+
+    fetchUserId();
+  }, []);
+
+  useEffect(() => {
+    if (!userId) return;
+
     const newSocket = io(url, { withCredentials: true });
     setSocket(newSocket);
 
     newSocket.emit('register', userId);
 
     newSocket.on('private message', (data) => {
-      setMessages((prevMessages) => [...prevMessages, data]);
+      console.log('Received message:', data); // Debugging: log received message
+      setMessages((prevMessages) => {
+        console.log("message :" ,messages);
+        const updatedMessages = [...prevMessages, data];
+        scrollToBottom();
+        return updatedMessages;
+      });
+      setMessage('');
+      
     });
 
     newSocket.on('private message error', (data) => {
@@ -40,8 +74,17 @@ const PrivateMessage = ({ userId }) => {
       toast.error('Recipient ID and message are required');
       return;
     }
+    if (!userId) {
+      toast.error('User ID is not available.');
+      return;
+    }
+
     socket.emit('private message', { senderId: userId, recipientId, message });
     setMessage('');
+  };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -66,14 +109,24 @@ const PrivateMessage = ({ userId }) => {
       </form>
 
       <div className={PrivateMessageCSS.messages}>
-        {messages.map((msg, index) => (
-          <div key={index} className={PrivateMessageCSS.message}>
-            From {msg.sender}: {msg.message}
-          </div>
-        ))}
+        {messages.length > 0 ? (
+          messages.map((msg, index) => (
+            <div 
+              key={index} 
+              className={`${PrivateMessageCSS.message} ${msg.sender === userId ? PrivateMessageCSS.sent : PrivateMessageCSS.received}`}
+            >
+              <p style={{ color: 'black' }}><strong>From {msg.sender}:</strong> {msg.message}</p>
+            </div>
+          ))
+        ) : (
+          <p>No messages to display</p>
+        )}
+        <div ref={messagesEndRef} />
       </div>
     </div>
   );
 };
 
 export default PrivateMessage;
+
+

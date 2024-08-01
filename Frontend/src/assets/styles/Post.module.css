@@ -165,10 +165,21 @@ border-radius: 5px;
     height: 100%; 
 
   } 
+  
   .liked {
-    color: red;
+    color: blue;
+    font-weight: bold;
   }
+  
+  .unliked {
+    color: gray;
+  }
+  
   .upvoted {
-    color: blue; /* Customize this as per your design */
+    color: green;
+    font-weight: bold;
   }
-    
+  
+  .unupvoted {
+    color: gray;
+  }

@@ -14,9 +14,10 @@ function PostNavbar() {
       <IoIosSearch className={PostNavbarCSS.icon2}/>
         <input className={PostNavbarCSS.input} type="text" placeholder="Search Reddit" />
       </div> 
-
-     <Link to="/chat"> <IoChatbubbleEllipsesSharp className={PostNavbarCSS.chat}  /></Link>
-      <IoIosAdd className={PostNavbarCSS.plus}/>
+<div className={PostNavbarCSS.plus}>
+     <Link to="/chat"> <IoChatbubbleEllipsesSharp   /></Link>
+      <IoIosAdd />
+      </div>
    
     
    <Link to="/create" className={PostNavbarCSS.create}> Create</Link>

@@ -8,15 +8,15 @@ import { FiTool } from "react-icons/fi";
 import { VscEdit } from "react-icons/vsc";
 import { BsTransparency } from "react-icons/bs";
 import { TbBrandAppgallery } from "react-icons/tb";
-import { AiFillLike } from "react-icons/ai";
-import { BiSolidUpvote } from "react-icons/bi";
+import { AiFillLike, AiOutlineLike } from "react-icons/ai";
+import { BiSolidUpvote, BiUpvote } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 
 
   
 function Post() {
-  const url = "http://localhost:8000";
+  const url = "https://redditclone-web-backend.onrender.com";
   const [posts, setPosts] = useState([]);
   const [user_id, setUserId] = useState(null);
 
@@ -54,6 +54,7 @@ function Post() {
 
       const data = await response.data;
 console.log("Posts Data: ", data)
+
       setPosts(data.data);
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -78,34 +79,72 @@ console.log("Posts Data: ", data)
   };
 
   const likePost = async (postId, userId) => {
-    try {
+    // try {
       
+
+    //   const response = await axios.post(`${url}/api/get-post/like`, {
+    //     userId,
+    //     postId
+    //   },{ withCredentials: true });
+
+    //   if (!response.data.success) {
+    //     throw new Error(`Failed to like post: ${response.data.msg}`);
+    //   }
+
+    //    fetchposts(); 
+     
+    // }  catch (error) {
+    //   if (error.response) {
+        
+    //     console.error('Error response data:', error.response.data);
+    //     console.error('Error response status:', error.response.status);
+    //     console.error('Error response headers:', error.response.headers);
+    //   } else if (error.request) {
+       
+    //     console.error('Error request:', error.request);
+    //   } else {
+       
+    //     console.error('Error message:', error.message);
+    //   }
+    // }
+    try {
+      const postIndex = posts.findIndex(post => post._id === postId);
+      if (postIndex === -1) return;
+
+      const updatedPosts = [...posts];
+      updatedPosts[postIndex].isLiked = !updatedPosts[postIndex].isLiked;
+      updatedPosts[postIndex].likes += updatedPosts[postIndex].isLiked ? 1 : -1;
+
+      setPosts(updatedPosts);
 
       const response = await axios.post(`${url}/api/get-post/like`, {
         userId,
         postId
-      },{ withCredentials: true });
+      }, { withCredentials: true });
 
       if (!response.data.success) {
         throw new Error(`Failed to like post: ${response.data.msg}`);
       }
-
-       fetchposts(); 
-     
-    }  catch (error) {
-      if (error.response) {
-        
-        console.error('Error response data:', error.response.data);
-        console.error('Error response status:', error.response.status);
-        console.error('Error response headers:', error.response.headers);
-      } else if (error.request) {
-       
-        console.error('Error request:', error.request);
-      } else {
-       
-        console.error('Error message:', error.message);
-      }
+      
+    } catch (error) {
+      console.error("Error liking post:", error.message);
     }
+    // try {
+    //   const response = await axios.post(`${url}/api/get-post/like`, {
+    //     userId,
+    //     postId
+    //   }, { withCredentials: true });
+
+    //   if (response.data.success) {
+    //     setPosts(posts.map(post =>
+    //       post._id === postId ? { ...post, isLiked: response.data.isLiked } : post
+    //     ));
+    //   } else {
+    //     throw new Error(`Failed to like post: ${response.data.msg}`);
+    //   }
+    // } catch (error) {
+    //   console.error("Error liking post:", error.message);
+    // }
   };
 
   const likeComment = async (postId, commentId, userId) => {
@@ -145,21 +184,44 @@ console.log("Posts Data: ", data)
     }
   };
   const upvotePost = async (postId, userId) => {
+    // try {
+    //   const response = await axios.post(`${url}/api/get-post/upvote`, {
+    //     userId,
+    //     postId
+    //   },{ withCredentials: true });
+
+    //   if (!response.data.success) {
+    //     throw new Error(`Failed to upvote post: ${response.data.msg}`);
+    //   }
+
+    //  fetchposts(); // Refresh posts after upvoting a post
+    
+    // } catch (error) {
+    //   console.error("Error upvoting post:", error.message);
+    // }
     try {
+      const postIndex = posts.findIndex(post => post._id === postId);
+      if (postIndex === -1) return;
+
+      const updatedPosts = [...posts];
+      updatedPosts[postIndex].isUpvoted = !updatedPosts[postIndex].isUpvoted;
+      updatedPosts[postIndex].upvotes += updatedPosts[postIndex].isUpvoted ? 1 : -1;
+
+      setPosts(updatedPosts);
+
       const response = await axios.post(`${url}/api/get-post/upvote`, {
         userId,
         postId
-      },{ withCredentials: true });
+      }, { withCredentials: true });
 
       if (!response.data.success) {
         throw new Error(`Failed to upvote post: ${response.data.msg}`);
       }
-
-     fetchposts(); // Refresh posts after upvoting a post
-    
+      
     } catch (error) {
       console.error("Error upvoting post:", error.message);
     }
+    
   };
 
 
@@ -214,12 +276,16 @@ console.log("Posts Data: ", data)
                   <p>{post.description}</p>
                   <button 
                     onClick={() => likePost(post._id, user_id)}
+                    className={post.isLiked ? PostCSS.liked : PostCSS.unliked}
    
  
-><AiFillLike /> Like</button>
+>{post.isLiked ? <AiFillLike /> : <AiOutlineLike />} Like
+</button>
                   <button 
-                    onClick={() => upvotePost(post._id, user_id)}><BiSolidUpvote />
-                  Upvote</button>
+                    onClick={() => upvotePost(post._id, user_id)}
+                    className={post.isUpvoted ? PostCSS.upvoted : PostCSS.unupvoted}>
+                 {post.isUpvoted ? <BiSolidUpvote /> : <BiUpvote />} Upvote
+                 </button>
                   <h4>Comments</h4>
                   {post.comment.map(comment => (
                     <div key={comment._id} className={PostCSS.comment}>
@@ -269,3 +335,5 @@ console.log("Posts Data: ", data)
 }
 
 export default Post;
+
+

@@ -12,7 +12,7 @@ import { BsTransparency } from "react-icons/bs";
 import { TbBrandAppgallery } from "react-icons/tb";
 function CreatingPost() {
 
-    const url = "http://localhost:8000";
+    const url = "https://redditclone-web-backend.onrender.com";
    
     const [data, setData] = useState({ title: "", description: ""});
   

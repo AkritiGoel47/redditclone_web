@@ -3,6 +3,14 @@ const bcrypt = require("bcrypt");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 
+
+const generateAccessToken = async (user) => {
+  const token = jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, {
+    expiresIn: "2h",
+  });
+  return token;
+};
+
 const registerUser = async (req, res) => {
   try {
     const errors = validationResult(req);
@@ -33,11 +41,26 @@ const registerUser = async (req, res) => {
       password: hashedPassword,
       
     });
+   
 
     const userData = await user.save();
+    const accessToken = await generateAccessToken({ user: userData });
+    res.cookie("accessToken", accessToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV, 
+      maxAge: 2 * 60 * 60 * 1000, // 2 hours
+    });
+    res.cookie("user_id", userData._id.toString(), {
+      httpOnly: true,
+      secure: process.env.NODE_ENV, 
+      maxAge: 2 * 60 * 60 * 1000, // 2 hours
+    });
+
 
     return res.status(200).json({
       success: true,
+      accessToken: accessToken,
+      tokenType: "Bearer",
       msg: "Registered successfully!",
       data: userData,
     });
@@ -47,12 +70,6 @@ const registerUser = async (req, res) => {
       msg: error.message,
     });
   }
-};
-const generateAccessToken = async (user) => {
-  const token = jwt.sign(user, process.env.ACCESS_SECRET_TOKEN, {
-    expiresIn: "2h",
-  });
-  return token;
 };
 
 const loginUser = async (req, res) => {

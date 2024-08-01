@@ -1,0 +1,26 @@
+version: ' 24.0.7'
+
+services:
+  frontend:
+    image: react-app
+
+    build:
+      context: .
+      dockerfile: dockerfile-frontend
+    ports:
+      - "5173:5173"  # Expose frontend port 5173
+    
+    depends_on:
+      - backend
+
+  backend:
+    image: node
+    build:
+      context: .
+      dockerfile: dockerfile-backend
+    ports:
+      - "8000:8000"  # Expose backend port 8000
+      
+    environment:
+      - NODE_ENV=production
+      # Add other environment variables if necessary

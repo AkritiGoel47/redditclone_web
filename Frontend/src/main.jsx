@@ -16,9 +16,9 @@ import CreatingPost from './pages/CreatingPost.jsx';
 import Admin from './pages/Admin.jsx'
 import Community from './pages/Community.jsx';
 import PrivateMessage from './pages/Chat.jsx';
+import {disableReactDevTools} from "@fvilers/disable-react-devtools"
 
-
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = "https://redditclone-web-backend.onrender.com";
 axios.defaults.withCredentials = true;
 
 const router = createBrowserRouter([

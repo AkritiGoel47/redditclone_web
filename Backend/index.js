@@ -1,3 +1,6 @@
+
+  
+
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
@@ -7,6 +10,7 @@ const usermodel = require("./models/postModel");
 const authRoute = require("./routes/authRoutes");
 const adminRoute = require("./routes/adminroutes");
 const commonRoute = require("./routes/commonRoute");
+const Chat = require("./models/chatModel")
 const http = require('http');
 const { Server } = require('socket.io');
 const socketIo = require('socket.io');
@@ -15,7 +19,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://redditclone-web-frontend.onrender.com",
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -35,7 +39,7 @@ mongoose
   app.use(cookieparser());
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://redditclone-web-frontend.onrender.com",
   credentials: true,
 };
 app.use(cors(corsOptions));

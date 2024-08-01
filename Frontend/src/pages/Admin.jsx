@@ -8,7 +8,7 @@ import PostNavbar from '../components/PostNavbar';
 import PostCSS from '../assets/styles/Post.module.css';
 
 function Admin() {
-  const url = "http://localhost:8000";
+  const url = "https://redditclone-web-backend.onrender.com";
   const [posts, setPosts] = useState([]);
 
   const fetchPosts = async () => {
