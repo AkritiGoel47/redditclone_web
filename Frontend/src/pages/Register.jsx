@@ -11,7 +11,7 @@ import { MdEmail } from "react-icons/md";
 
 
 function Register() {
-  const url = "https://redditclone-web-backend.onrender.com";
+  const url = "http://localhost:8000";
   const navigate = useNavigate();
   const [data, setData] = useState({ name: "", email: "", password: "" ,});
 
