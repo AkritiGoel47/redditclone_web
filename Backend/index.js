@@ -19,7 +19,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "https://redditclone-web-umber.vercel.app/",
+    origin: "https://redditclone-web-umber.vercel.app",
     methods: ["GET", "POST"],
     credentials: true
   }
@@ -39,7 +39,7 @@ mongoose
   app.use(cookieparser());
 
 const corsOptions = {
-  origin: "https://redditclone-web-umber.vercel.app/",
+  origin: "https://redditclone-web-umber.vercel.app",
   credentials: true,
 };
 app.use(cors(corsOptions));
