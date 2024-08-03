@@ -48,11 +48,13 @@ const registerUser = async (req, res) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV, 
+      sameSite: 'strict',
       maxAge: 2 * 60 * 60 * 1000, // 2 hours
     });
     res.cookie("user_id", userData._id.toString(), {
       httpOnly: true,
       secure: process.env.NODE_ENV, 
+      sameSite: 'strict',
       maxAge: 2 * 60 * 60 * 1000, // 2 hours
     });
 
@@ -104,11 +106,13 @@ const loginUser = async (req, res) => {
     res.cookie("accessToken", accessToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV, 
+sameSite: 'strict',
       maxAge: 2 * 60 * 60 * 1000, // 2 hours
     });
     res.cookie("user_id", userData._id.toString(), {
       httpOnly: true,
       secure: process.env.NODE_ENV, 
+      sameSite: 'strict',
       maxAge: 2 * 60 * 60 * 1000, // 2 hours
     });
 
