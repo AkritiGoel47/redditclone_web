@@ -109,8 +109,8 @@ const PrivateMessage = () => {
       </form>
 
       <div className={PrivateMessageCSS.messages}>
-        {messages.length > 0 ? (
-          messages.map((msg, index) => (
+        {updatedMessages.length > 0 ? (
+          updatedMessages.map((msg, index) => (
             <div 
               key={index} 
               className={`${PrivateMessageCSS.message} ${msg.sender === userId ? PrivateMessageCSS.sent : PrivateMessageCSS.received}`}
