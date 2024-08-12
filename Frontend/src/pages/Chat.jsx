@@ -115,7 +115,7 @@ const PrivateMessage = () => {
               key={index} 
               className={`${PrivateMessageCSS.message} ${msg.sender === userId ? PrivateMessageCSS.sent : PrivateMessageCSS.received}`}
             >
-              <p style={{ color: 'black' }}><strong>From {msg.sender}:</strong> {msg.updatedMessages}</p>
+              <p style={{ color: 'black' }}><strong>From {msg.sender}:</strong> {msg.message}</p>
             </div>
           ))
         ) : (
